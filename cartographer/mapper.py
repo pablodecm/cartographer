@@ -2,8 +2,11 @@
 Mapper algorithm implementation
 """
 from sklearn.base import BaseEstimator, ClusterMixin
-from sklearn import cluster
-
+from sklearn.cluster import DBSCAN
+from sklearn.decomposition import PCA 
+import numpy as np
+from .coverers import HyperRectangleCoverer
+import itertools
 
 class Mapper(BaseEstimator, ClusterMixin):
 
@@ -12,25 +15,17 @@ class Mapper(BaseEstimator, ClusterMixin):
     Parameters
     ----------
 
-    filterer : f(X) which returns 2D array, array of f(X) which return 1D
-    arrays or scikit-learn transformer, default=np.mean
+    filterer : scikit-learn transformer, default=PCA(n_components=2)
       If y is not specified in the fit method the lense/filter values used will
-      be the result of the application of this function array or transform
-      Pipeline to the input data.
+      be the result of the application of this transform Pipeline to the
+      input data will be considered.
 
-    filterer_params : dict of params of filterer, default={}
-      Parameters to be passed to the filterer object/function
+    coverer: instance of Coverer object, default=HyperRectangleCoverer()
 
-    coverer: instance of Coverer object
+    clusterer: scikit-learn-like cluster estimator, default=DBSCAN()
 
-    coverer_params: dict of params of coverer, default={}
-      Parameters to be passed to the coverer object/function
-
-    clusterer: scikit-learn-like cluster estimator,
-    default=DBSCAN(eps=0.5,min_samples=3)
-
-    clusterer_params: dict of params of coverer, default={}
-      Parameters to be passed to the clusterer object/function
+    params: dict of params for filterer, coverer and clusterer, default={}
+      Parameters to be passed to the filter, coverer and cluster objects
 
     Attributes
     ----------
@@ -44,16 +39,15 @@ class Mapper(BaseEstimator, ClusterMixin):
 
     """
 
-    def __init__(self, filterer=, filterer_params={},
-                 coverer=, coverer_params={},
-                 clusterer=cluster.DBSCAN(eps=0.5, min_samples=3),
-                 clusterer_params={}):
+    def __init__(self, filterer=PCA(n_components=2),
+                 coverer=HyperRectangleCoverer(),
+                 clusterer=DBSCAN(),
+                 params={}):
         self.filterer = filterer
-        self.filterer_params = filterer_params
         self.coverer = coverer
-        self.coverer_params = coverer_params
         self.clusterer = clusterer
-        self.clusterer_params = clusterer_params
+        self.set_params(**params)
+
 
     def fit(self, X, y=None):
         """ Creates a Mapper graph for the input data
@@ -73,4 +67,42 @@ class Mapper(BaseEstimator, ClusterMixin):
 
         """
 
-    return self
+        # if y no specified, use filterer object to obtain filter map
+        if y == None:
+          y = self.filterer.fit_transform(X) 
+
+        # obtain matrix of partition membership
+        m_matrix = self.coverer.fit_transform(y)  
+        # overlap between partitions
+        o_matrix = self.coverer.overlap_matrix()
+
+        def clusterize_samples(X, mask):
+          ids = np.where(mask)[0]
+          s_labels = self.clusterer.fit_predict(X[ids])
+          # get distinct labels (remove noise -1)
+          u_labels = s_labels[np.where(np.unique(s_labels) > -1)[0]]
+          # if no clusters return empty list or list of np.array otherwise
+          if len(u_labels) == 0:
+            return []
+          else:
+            return [ids[s_labels == label] for label in u_labels]
+
+        # this can be parallelized (e.g. joblib)
+        p_clusters = [clusterize_samples(X, mask) for mask in m_matrix] 
+
+        self.links_ = {} 
+        for p_idx, o_ids in enumerate(o_matrix):
+            for o_idx in o_ids:
+                nc_p_idx = len(p_clusters[p_idx])
+                nc_o_idx = len(p_clusters[o_idx])
+                for c_p_idx, c_o_idx in \
+                    itertools.product(range(nc_p_idx),range(nc_o_idx)):
+                    intersect = np.intersect1d(p_clusters[p_idx][c_p_idx],
+                                               p_clusters[o_idx][c_o_idx],
+                                               assume_unique=True)
+                    if len(intersect) != 0:
+                        self.links_[(p_idx,c_p_idx)] = (o_idx, c_o_idx)
+
+        self.nodes_ = p_clusters
+        
+        return self
