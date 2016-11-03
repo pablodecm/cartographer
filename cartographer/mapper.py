@@ -68,7 +68,7 @@ class Mapper(BaseEstimator, ClusterMixin):
         """
 
         # if y no specified, use filterer object to obtain filter map
-        if y == None:
+        if y is None:
           y = self.filterer.fit_transform(X) 
 
         # obtain matrix of partition membership
@@ -78,6 +78,8 @@ class Mapper(BaseEstimator, ClusterMixin):
 
         def clusterize_samples(X, mask):
           ids = np.where(mask)[0]
+          if len(ids) == 0:
+            return []
           s_labels = self.clusterer.fit_predict(X[ids])
           # get distinct labels (remove noise -1)
           u_labels = s_labels[np.where(np.unique(s_labels) > -1)[0]]
@@ -88,12 +90,12 @@ class Mapper(BaseEstimator, ClusterMixin):
             return [ids[s_labels == label] for label in u_labels]
 
         # this can be parallelized (e.g. joblib)
-        p_clusters = [clusterize_samples(X, mask) for mask in m_matrix] 
+        p_clusters = [clusterize_samples(X, mask) for mask in m_matrix.T] 
 
         self.links_ = {} 
         for p_idx, o_ids in enumerate(o_matrix):
-            for o_idx in o_ids:
-                nc_p_idx = len(p_clusters[p_idx])
+            nc_p_idx = len(p_clusters[p_idx])
+            for o_idx in np.where(o_ids)[0]: # only check overlapping partitions
                 nc_o_idx = len(p_clusters[o_idx])
                 for c_p_idx, c_o_idx in \
                     itertools.product(range(nc_p_idx),range(nc_o_idx)):
