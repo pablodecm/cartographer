@@ -28,7 +28,7 @@ before_install:
        conda create -q -n testenv python=$TRAVIS_PYTHON_VERSION pytest;
        source activate testenv;
        conda install --file requirements.txt;
-    fi
+    fi;
 
 install:
   - python setup.py install
