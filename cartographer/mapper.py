@@ -89,22 +89,30 @@ class Mapper(BaseEstimator, ClusterMixin):
           else:
             return [ids[s_labels == label] for label in u_labels]
 
+        # clustering per partition
         # this can be parallelized (e.g. joblib)
-        p_clusters = [clusterize_samples(X, mask) for mask in m_matrix.T] 
+        self.nodes_ = [clusterize_samples(X, mask) for mask in m_matrix.T] 
 
-        self.links_ = {} 
+        # obtain links checking cluster intersections
+        # in the future could also save the size of intersection
+        self.links_ = [] 
+        self.nodes_to_int_ = {} 
+        counter = 0
         for p_idx, o_ids in enumerate(o_matrix):
-            nc_p_idx = len(p_clusters[p_idx])
-            for o_idx in np.where(o_ids)[0]: # only check overlapping partitions
-                nc_o_idx = len(p_clusters[o_idx])
+            nc_p_idx = len(self.nodes_[p_idx])
+            # map to go from (p, c) node notation to a single int
+            for c_p_idx in range(nc_p_idx):
+                self.nodes_to_int_[(p_idx, c_p_idx)] = counter
+                counter += 1
+            # only check overlapping partitions for intersection
+            for o_idx in np.where(o_ids)[0]:
+                nc_o_idx = len(self.nodes_[o_idx])
                 for c_p_idx, c_o_idx in \
                     itertools.product(range(nc_p_idx),range(nc_o_idx)):
-                    intersect = np.intersect1d(p_clusters[p_idx][c_p_idx],
-                                               p_clusters[o_idx][c_o_idx],
+                    intersect = np.intersect1d(self.nodes_[p_idx][c_p_idx],
+                                               self.nodes_[o_idx][c_o_idx],
                                                assume_unique=True)
                     if len(intersect) != 0:
-                        self.links_[(p_idx,c_p_idx)] = (o_idx, c_o_idx)
+                        self.links_.append(((p_idx,c_p_idx),(o_idx, c_o_idx)))
 
-        self.nodes_ = p_clusters
-        
         return self
