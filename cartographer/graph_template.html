@@ -15,9 +15,6 @@
 
 </style>
 <svg width="600" height="600"></svg>
-<body>
-  <div id="holder">
-  </div>    
 <script>
 require.config({{
 paths: {{
@@ -31,7 +28,10 @@ var svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
-var color = d3.scaleOrdinal(d3.schemeCategory20);
+var output = svg.select(function() {{ return this.parentNode; }})
+
+var ord_color = d3.scaleOrdinal(d3.schemeCategory20);
+var seq_color = d3.scaleSequential(d3.interpolateViridis);
 
 var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) {{ return d.id; }}))
@@ -55,7 +55,7 @@ var node = svg.append("g")
   .data(graph.nodes)
   .enter().append("circle")
     .attr("r", 5)
-    .attr("fill", function(d) {{ return color(d.group); }})
+    .attr("fill", function(d) {{ return ord_color(d.int_id); }})
     .call(d3.drag()
         .on("start", dragstarted)
         .on("drag", dragged)
@@ -70,6 +70,18 @@ simulation
 
 simulation.force("link")
     .links(graph.links);
+
+
+var select = output.append("select")
+                     .on("change", menuchanged);
+
+select.selectAll("option")
+      .data(graph.categories_and_scales)
+      .enter()
+        .append("option")
+        .attr("value", function(d) {{return d.name; }})
+        .attr("type", function(d) {{return d.type; }})
+        .text(function (d) {{ return d.name; }});
 
 function ticked() {{
   link
@@ -98,6 +110,24 @@ function dragended(d) {{
   if (!d3.event.active) simulation.alphaTarget(0);
   d.fx = null;
   d.fy = null;
+}}
+
+function menuchanged() {{
+  // get the index of the selected element 
+  var selectedIndex = d3.event.target.selectedIndex;
+  var selectedDOMElement = d3.event.target.children[selectedIndex];
+  var selection = d3.select(selectedDOMElement);
+  var v_name = selection.text()
+  var v_type = selection.attr("type") 
+  var min_var = d3.min(graph.nodes, function(d) {{ return d[v_name]; }});
+  var max_var = d3.max(graph.nodes, function(d) {{ return d[v_name]; }});
+  node.style("fill", function(d) {{ 
+    if (v_type == "category") {{
+      return ord_color(d[v_name]);
+    }}
+    seq_color.domain([min_var,max_var]);
+    return seq_color(d[v_name]);
+  }});
 }}
 }});
 
