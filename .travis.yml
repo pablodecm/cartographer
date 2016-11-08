@@ -29,8 +29,8 @@ before_install:
        conda create -q -n testenv python=$TRAVIS_PYTHON_VERSION pytest;
        source activate testenv;
        conda install --file requirements.txt;
-       pip install pytest-cov 
-       pip install coveralls
+       pip install pytest-cov; 
+       pip install coveralls;
     fi;
 
 install:
@@ -40,4 +40,6 @@ script:
   - py.test --cov-report= --cov=cartographer
 
 after_success:
-  - coveralls  
+  - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+      coveralls  
+    fi;   
