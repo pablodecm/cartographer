@@ -50,4 +50,4 @@ def html_graph(model, categories=None, scales=None):
     template = pkg_resources.resource_string(resource_package, resource_path)
     json_graph_str = json_graph(model, categories, scales)
     template_pars = {"json_graph": json_graph_str}
-    return template.format(**template_pars)
+    return template.decode('utf-8').format(**template_pars)
