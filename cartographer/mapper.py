@@ -43,11 +43,12 @@ class Mapper(BaseEstimator, ClusterMixin):
     def __init__(self, filterer=PCA(n_components=2),
                  coverer=HyperRectangleCoverer(),
                  clusterer=DBSCAN(),
-                 params={}):
+                 params=None):
         self.filterer = filterer
         self.coverer = coverer
         self.clusterer = clusterer
-        self.set_params(**params)
+        if params is not None:
+            self.set_params(**params)
 
     def fit(self, X, y=None):
         """ Creates a Mapper graph for the input data

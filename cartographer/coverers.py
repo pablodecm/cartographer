@@ -6,7 +6,6 @@ from __future__ import print_function
 
 from sklearn.base import BaseEstimator, TransformerMixin
 import numpy as np
-import sys
 
 
 class HyperRectangleCoverer(BaseEstimator, TransformerMixin):
@@ -45,6 +44,9 @@ class HyperRectangleCoverer(BaseEstimator, TransformerMixin):
           Data which will be covered.
 
         """
+
+        if y is not None:
+            raise ValueError("y value will not be used")
 
         if np.iterable(self.intervals):
             if len(self.intervals) != X.shape[1]:
@@ -98,6 +100,9 @@ class HyperRectangleCoverer(BaseEstimator, TransformerMixin):
           Boolean matrix of sample membership to each partition
 
         """
+        if y is not None:
+            raise ValueError("y value will not be used")
+
         return np.logical_and(
             np.all(X[:, :, np.newaxis] > self.lowerbounds.T, axis=1),
             np.all(X[:, :, np.newaxis] < self.upperbounds.T, axis=1))
