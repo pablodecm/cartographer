@@ -10,7 +10,7 @@ cartographer
 .. _RTD: http://cartographer-.readthedocs.io/en/latest/?badge=latest
 
 
-.. |Gitter| image:: image:: https://badges.gitter.im/Join%20Chat.svg
+.. |Gitter| image:: https://badges.gitter.im/cartographer_.svg
 .. _Gitter: https://gitter.im/cartographer_/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link
 
 Flexible, extensible and fully scikit-compatible Mapper
