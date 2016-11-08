@@ -9,10 +9,10 @@ def json_graph(model, categories = {}, scales = {}):
 
     # build links json representation
     json_dict["links"] = []
-    for s_node, t_node in model.links_:
+    for s_node, t_node, n_common in model.links_:
         link_dict = {"source" : str(s_node),
                      "target" : str(t_node),
-                     "value"  : 1 }
+                     "n_common" : n_common}
         json_dict["links"].append(link_dict)
 
     # node json representation
@@ -21,7 +21,8 @@ def json_graph(model, categories = {}, scales = {}):
         for (c_n, c) in enumerate(p):
             node_dict = {"id" : str((p_n, c_n)),
                          "int_id" : model.nodes_to_int_[(p_n, c_n)],
-                         "color" : 1 } 
+                         "color" : 1,
+                         "n_members" : c.shape[0]} 
             for name, arr in categories.items():
               node_dict[name] = int(mode(arr[c], axis=None)[0])
             for name, arr in scales.items():

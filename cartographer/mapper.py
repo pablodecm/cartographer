@@ -112,7 +112,7 @@ class Mapper(BaseEstimator, ClusterMixin):
                     intersect = np.intersect1d(self.nodes_[p_idx][c_p_idx],
                                                self.nodes_[o_idx][c_o_idx],
                                                assume_unique=True)
-                    if len(intersect) != 0:
-                        self.links_.append(((p_idx,c_p_idx),(o_idx, c_o_idx)))
+                    if intersect.shape[0] != 0:
+                        self.links_.append(((p_idx,c_p_idx),(o_idx, c_o_idx), intersect.shape[0]))
 
         return self

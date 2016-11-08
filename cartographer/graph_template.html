@@ -30,8 +30,12 @@ var svg = d3.select("svg"),
 
 var output = svg.select(function() {{ return this.parentNode; }})
 
+// colour scales
 var ord_color = d3.scaleOrdinal(d3.schemeCategory20);
 var seq_color = d3.scaleSequential(d3.interpolateViridis);
+// size and width scales
+var radius_scale = d3.scaleLog().domain([1,10]).range([0.5,3])
+var stroke_scale = d3.scaleLog().domain([1,10]).range([0.5,1])
 
 var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) {{ return d.id; }}))
@@ -47,14 +51,14 @@ var link = svg.append("g")
   .selectAll("line")
   .data(graph.links)
   .enter().append("line")
-    .attr("stroke-width", function(d) {{ return Math.sqrt(d.value); }});
+    .attr("stroke-width", function(d) {{ return stroke_scale(d.n_common); }});
 
 var node = svg.append("g")
     .attr("class", "nodes")
   .selectAll("circle")
   .data(graph.nodes)
   .enter().append("circle")
-    .attr("r", 5)
+    .attr("r", function(d) {{ return radius_scale(d.n_members); }})
     .attr("fill", function(d) {{ return ord_color(d.int_id); }})
     .call(d3.drag()
         .on("start", dragstarted)
