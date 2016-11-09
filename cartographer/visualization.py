@@ -34,10 +34,10 @@ def json_graph(model, categories=None, scales=None):
     # list of categories and scales
     e_name = "categories_and_scales"
     json_dict[e_name] = []
-    for c in (["int_id"] + (categories.keys() if categories
+    for c in (["int_id"] + (list(categories.keys()) if categories
                             is not None else [])):
         json_dict[e_name].append({"name": c, "type": "category"})
-    for s in (scales.keys() if scales is not None else []):
+    for s in (list(scales.keys()) if scales is not None else []):
         json_dict[e_name].append({"name": s, "type": "scale"})
 
     return json.dumps(json_dict, indent=4)
