@@ -1,7 +1,7 @@
 cartographer
 ============
 
-|Travis|_ |RTD|_ |Gitter|_ 
+|Travis|_ |RTD|_ |Coveralls|_ |Landscape|_ |Gitter|_ 
 
 .. |Travis| image:: https://travis-ci.org/pablodecm/cartographer.svg?branch=master
 .. _Travis: https://travis-ci.org/pablodecm/cartographer
@@ -9,6 +9,11 @@ cartographer
 .. |RTD| image:: https://readthedocs.org/projects/cartographer-/badge/?version=latest
 .. _RTD: http://cartographer-.readthedocs.io/en/latest/?badge=latest
 
+.. |Coveralls| image:: https://coveralls.io/repos/github/pablodecm/cartographer/badge.svg?branch=master 
+.. _Coveralls: https://coveralls.io/github/pablodecm/cartographer?branch=master 
+
+.. |Landscape| image:: https://landscape.io/github/pablodecm/cartographer/master/landscape.svg?style=flat
+.. _Landscape: https://landscape.io/github/pablodecm/cartographer/master
 
 .. |Gitter| image:: https://badges.gitter.im/cartographer_.svg
 .. _Gitter: https://gitter.im/cartographer_/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link
