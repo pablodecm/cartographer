@@ -59,6 +59,7 @@ setup(name=NAME,
       packages=['cartographer',
                 'cartographer.tests',
                 ],
+      package_data={'cartographer': ['graph_template.html']},
       classifiers=[
           'Environment :: Console',
           'Intended Audience :: Science/Research',
