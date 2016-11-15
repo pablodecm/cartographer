@@ -33,11 +33,21 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
-    'numpydoc.numpydoc'
+    'numpydoc.numpydoc',
+    'sphinx.ext.autosummary',
+    'nbsphinx'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+
+import glob
+autosummary_generate = glob.glob("./*.rst")
+
+import shutil
+shutil.rmtree("examples")
+shutil.copytree("../examples", "examples")
+
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -85,7 +95,7 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '**.ipynb_checkpoints']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
