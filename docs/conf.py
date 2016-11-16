@@ -157,6 +157,7 @@ html_theme_options = {
     'description': "Flexible and extensible Mapper algorithm implementation",
     'github_user': 'pablodecm',
     'github_repo': 'cartographer',
+    'github_type' : 'star',
     'fixed_sidebar': True,
     'github_button': True
 }

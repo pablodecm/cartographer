@@ -4,29 +4,17 @@ cartographer
 
 .. include:: ../README.rst
 
-Contents:
+Contents
+========
 
 .. toctree::
-   :maxdepth: 3
-   :glob:
+   :maxdepth: 2
 
-   mapper
-   coverers 
-   visualization
-
-   examples/make_circles_example.ipynb
-   examples/chemdiab_example.ipynb
-   examples/digits_example.ipynb
-
-
-
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   Introduction <index>
+   quickstart
+   about_mapper 
+   modules
+   examples
+   indices
+   api_reference
 
