@@ -1,7 +1,7 @@
 cartographer
 ============
 
-|Travis|_ |RTD|_ |Coveralls|_ |Landscape|_ |Gitter|_ 
+|Travis|_ |Coveralls|_ |Landscape|_ |Gitter|_ 
 
 .. |Travis| image:: https://travis-ci.org/pablodecm/cartographer.svg?branch=master
 .. _Travis: https://travis-ci.org/pablodecm/cartographer
