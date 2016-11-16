@@ -35,11 +35,14 @@ before_install:
 
 install:
   - python setup.py install
+  - pip install travis-sphinx
 
 script:
   - py.test --cov-report= --cov=cartographer
+  - travis-sphinx --source=docs build
 
 after_success:
   - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
       coveralls;  
+      travis-sphinx deploy;
     fi;   
