@@ -6,9 +6,6 @@ cartographer
 .. |Travis| image:: https://travis-ci.org/pablodecm/cartographer.svg?branch=master
 .. _Travis: https://travis-ci.org/pablodecm/cartographer
 
-.. |RTD| image:: https://readthedocs.org/projects/cartographer-/badge/?version=latest
-.. _RTD: http://cartographer-.readthedocs.io/en/latest/?badge=latest
-
 .. |Coveralls| image:: https://coveralls.io/repos/github/pablodecm/cartographer/badge.svg?branch=master 
 .. _Coveralls: https://coveralls.io/github/pablodecm/cartographer?branch=master 
 
@@ -20,6 +17,8 @@ cartographer
 
 Flexible, extensible and fully scikit-compatible Mapper
 algorithm [#mapper_first]_ implementation.
+
+Website and documentation: http://pablodecm.com/cartographer 
 
 ----------------------------------------------------------------------------
 
