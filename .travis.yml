@@ -39,7 +39,7 @@ install:
 
 script:
   - py.test --cov-report= --cov=cartographer
-  - travis-sphinx --source=docs build
+  - travis-sphinx --nowarn --source=docs build
 
 after_success:
   - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then

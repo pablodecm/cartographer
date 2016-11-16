@@ -45,8 +45,19 @@ import glob
 autosummary_generate = glob.glob("./*.rst")
 
 import shutil
-shutil.rmtree("examples")
-shutil.copytree("../examples", "examples")
+from os import path
+conf_py_path = __file__
+print("conf.py filepath: {}".format(conf_py_path))
+conf_py_dir = path.dirname(conf_py_path)
+print("conf.py dir: {}".format(conf_py_dir))
+
+docs_examples_dir = path.join(conf_py_dir,"examples")
+examples_dir = path.join(conf_py_dir,os.pardir,"examples")
+if path.exists(docs_examples_dir):
+    shutil.rmtree(docs_examples_dir)
+print("copying {} dir to {}".format(examples_dir,
+                                    docs_examples_dir))
+shutil.copytree(examples_dir, docs_examples_dir)
 
 
 # The suffix(es) of source filenames.
