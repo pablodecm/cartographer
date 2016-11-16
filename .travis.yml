@@ -35,11 +35,21 @@ before_install:
 
 install:
   - python setup.py install
+  - if [[ "$TRAVIS_PYTHON_VERSION" == "3.5" ]]; then
+      conda install jupyter;
+      conda install pandoc;
+      pip install travis-sphinx;
+      pip install nbsphinx;
+    fi;
 
 script:
   - py.test --cov-report= --cov=cartographer
+  - if [[ "$TRAVIS_PYTHON_VERSION" == "3.5" ]]; then
+      travis-sphinx --nowarn --source=docs build;
+    fi;  
 
 after_success:
-  - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+  - if [[ "$TRAVIS_PYTHON_VERSION" == "3.5" ]]; then
       coveralls;  
+      travis-sphinx deploy;
     fi;   

@@ -33,11 +33,32 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
-    'numpydoc.numpydoc'
+    'numpydoc.numpydoc',
+    'sphinx.ext.autosummary',
+    'nbsphinx'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+
+import glob
+autosummary_generate = glob.glob("./*.rst")
+
+import shutil
+from os import path
+conf_py_path = __file__
+print("conf.py filepath: {}".format(conf_py_path))
+conf_py_dir = path.dirname(conf_py_path)
+print("conf.py dir: {}".format(conf_py_dir))
+
+docs_examples_dir = path.join(conf_py_dir,"examples")
+examples_dir = path.join(conf_py_dir,os.pardir,"examples")
+if path.exists(docs_examples_dir):
+    shutil.rmtree(docs_examples_dir)
+print("copying {} dir to {}".format(examples_dir,
+                                    docs_examples_dir))
+shutil.copytree(examples_dir, docs_examples_dir)
+
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -85,7 +106,7 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '**.ipynb_checkpoints']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
