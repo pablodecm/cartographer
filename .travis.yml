@@ -36,6 +36,7 @@ before_install:
 install:
   - python setup.py install
   - pip install travis-sphinx
+  - pip install nbsphinx 
 
 script:
   - py.test --cov-report= --cov=cartographer
