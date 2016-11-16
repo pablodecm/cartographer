@@ -35,6 +35,7 @@ before_install:
 
 install:
   - python setup.py install
+  - conda install jupyter
   - pip install travis-sphinx
   - pip install nbsphinx 
 
