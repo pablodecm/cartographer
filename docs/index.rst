@@ -1,3 +1,6 @@
+============
+cartographer
+============
 
 .. include:: ../README.rst
 

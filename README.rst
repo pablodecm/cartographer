@@ -1,7 +1,9 @@
-cartographer
-============
 
 |Travis|_ |Coveralls|_ |Landscape|_ |Gitter|_ 
+
+What is cartographer?
+=====================
+
 
 .. |Travis| image:: https://travis-ci.org/pablodecm/cartographer.svg?branch=master
 .. _Travis: https://travis-ci.org/pablodecm/cartographer
