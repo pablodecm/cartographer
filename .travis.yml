@@ -44,7 +44,9 @@ install:
 
 script:
   - py.test --cov-report= --cov=cartographer
-  - travis-sphinx --nowarn --source=docs build
+  - if [[ "$TRAVIS_PYTHON_VERSION" == "3.5" ]]; then
+      travis-sphinx --nowarn --source=docs build;
+    fi;  
 
 after_success:
   - if [[ "$TRAVIS_PYTHON_VERSION" == "3.5" ]]; then
