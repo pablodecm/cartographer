@@ -24,6 +24,13 @@ extendible and fully scikit-learn_ compatible.
 Features
 ========
 
+- The Mapper class can use any filter function, space cover and
+  clustering method, all of them being scikit-learn API estimators. 
+- Built-in but customizable d3js graph visualizations to be used interactively
+  from Jupyter Notebook.
+- Reasonably efficient implementation, in the process of being 
+  parallelized and to use sparse when possible.
+
 Installation
 ============
 
