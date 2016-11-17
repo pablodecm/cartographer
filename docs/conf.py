@@ -145,14 +145,22 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
+
 html_theme = 'alabaster'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-# html_theme_options = {}
-
+html_theme_options = {
+    'logo_name': True,
+    'description': "Flexible and extensible Mapper algorithm implementation",
+    'github_user': 'pablodecm',
+    'github_repo': 'cartographer',
+    'github_type' : 'star',
+    'fixed_sidebar': True,
+    'github_button': True
+}
 # Add any paths that contain custom themes here, relative to this directory.
 # html_theme_path = []
 
@@ -200,7 +208,16 @@ html_static_path = ['_static']
 
 # Custom sidebar templates, maps document names to template names.
 #
-# html_sidebars = {}
+html_sidebars = {
+    '**': [
+        'about.html',
+        'navigation.html',
+        'relations.html',
+        'searchbox.html',
+        'donate.html',
+    ],
+}
+
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
