@@ -8,7 +8,7 @@ python:
 env:
   matrix:
   - BUILD="test" INSTALL="conda"
-  - BUILD="test" INSTALL="pip"
+    #  - BUILD="test" INSTALL="pip"
 
 before_install:
   - if [[ $INSTALL == 'pip' ]]; then
