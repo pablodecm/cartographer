@@ -14,6 +14,7 @@ dependencies:
   - pytest-cov  
   - python-coveralls
   - sphinx  
+  - pandoc  
   - numpydoc  
   - jupyter
   - ipykernel  
