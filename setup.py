@@ -2,7 +2,7 @@ import io
 import os
 import re
 
-from distutils.core import setup
+from setuptools import setup
 
 
 def read(path, encoding='utf-8'):
@@ -45,6 +45,10 @@ LICENSE = 'MIT'
 
 VERSION = version('cartographer/__init__.py')
 
+INSTALL_REQUIRES = ["numpy",
+                    "scipy",
+                    "scikit-learn"]
+
 setup(name=NAME,
       version=VERSION,
       description=DESCRIPTION,
@@ -60,11 +64,12 @@ setup(name=NAME,
                 'cartographer.tests',
                 ],
       package_data={'cartographer': ['graph_template.html']},
+      install_requires = INSTALL_REQUIRES,
       classifiers=[
           'Environment :: Console',
           'Intended Audience :: Science/Research',
           'Natural Language :: English',
           'Programming Language :: Python :: 2.7',
           'Programming Language :: Python :: 3.4',
-          'Programming Language :: Python :: 3.5'],
+          'Programming Language :: Python :: 3.5']
       )

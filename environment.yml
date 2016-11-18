@@ -1,0 +1,23 @@
+name: cartographer
+
+channels:
+   - conda-forge
+
+dependencies:
+  - python
+  - numpy
+  - scipy  
+  - scikit-learn
+  - jupyter
+  - ipykernel  
+  - nose  
+  - pytest
+  - pytest-pep8  
+  - pytest-cov  
+  - python-coveralls
+  - sphinx  
+  - numpydoc  
+  - pip:
+    - nbsphinx  
+    - travis-sphinx  
+

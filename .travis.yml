@@ -8,7 +8,7 @@ python:
 env:
   matrix:
   - BUILD="test" INSTALL="conda"
-#  - BUILD="test" INSTALL="pip"
+  - BUILD="test" INSTALL="pip"
 
 before_install:
   - if [[ $INSTALL == 'pip' ]]; then
@@ -25,28 +25,16 @@ before_install:
        conda config --set always_yes yes --set changeps1 no;
        conda update -q conda;
        conda info -a;
-       conda config --add channels conda-forge;
-       conda create -q -n testenv python=$TRAVIS_PYTHON_VERSION pytest;
-       source activate testenv;
-       conda install --file requirements.txt;
-       pip install pytest-cov; 
-       pip install coveralls;
+       conda env create -q;
+       source activate cartographer;
     fi;
 
 install:
-  - python setup.py install
-  - if [[ "$TRAVIS_PYTHON_VERSION" == "3.5" ]]; then
-      conda install jupyter;
-      conda install pandoc;
-      pip install travis-sphinx;
-      pip install nbsphinx;
-    fi;
+  - pip install -e .
 
 script:
   - py.test --cov-report= --cov=cartographer
-  - if [[ "$TRAVIS_PYTHON_VERSION" == "3.5" ]]; then
-      travis-sphinx --nowarn --source=docs build;
-    fi;  
+  - travis-sphinx --nowarn --source=docs build
 
 after_success:
   - if [[ "$TRAVIS_PYTHON_VERSION" == "3.5" ]]; then
