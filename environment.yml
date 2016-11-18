@@ -8,8 +8,6 @@ dependencies:
   - numpy
   - scipy  
   - scikit-learn
-  - jupyter
-  - ipykernel  
   - nose  
   - pytest
   - pytest-pep8  
@@ -17,6 +15,9 @@ dependencies:
   - python-coveralls
   - sphinx  
   - numpydoc  
+  - jupyter
+  - ipykernel  
+  - seaborn   
   - pip:
     - nbsphinx  
     - travis-sphinx  
