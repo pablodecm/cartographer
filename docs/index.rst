@@ -12,7 +12,7 @@ Contents
 
    Introduction <index>
    quickstart
-   about_mapper 
+   about_mapper.ipynb 
    modules
    examples
    indices
