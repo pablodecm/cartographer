@@ -4,13 +4,14 @@ Theoretical miminum
 The Mapper algorithm  [#mapper_first]_ is a visualization and data exploration
 technique to study the shape of high-dimensional data. This analysis method is
 generally classified as a topological data analysis (TDA) technique. Topology is
-the branch of mathematics centered around the qualitative geometric information
-by studying the characteristics of space that are preserved under continuous
-deformations. The mathematical properties of this discipline, such as
+the branch of mathematics which formally studies the qualitative geometric
+information of space by considering the characteristics that are preserved
+under continuous deformations.
+The mathematical properties of this discipline, such as
 functoriality, make of TDA a robust framework for studying high-dimensional data
-even in the presence of an weak metric or statistical noise.
+even in the presence of weak metrics or significant statistical noise.
 
-In addition to the original paper where the technique
+In addition to the original paper [#mapper_first]_ where the technique
 was presented, I recommend checking *Topology and data*
 [#topology_and_data]_ by Gunnar Carlsson and also some of the white papers
 and videos provided at Ayasdi_, which is the company created by the inventors of
