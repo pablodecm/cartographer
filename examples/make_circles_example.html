@@ -1,0 +1,1661 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>make_circles_example &#8212; cartographer 0.1.1dev0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.1dev0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/require.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="cartographer 0.1.1dev0 documentation" href="../index.html" />
+    <link rel="up" title="More Examples" href="../examples.html" />
+    <link rel="next" title="chemdiab dataset example" href="chemdiab_example.html" />
+    <link rel="prev" title="More Examples" href="../examples.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">cartographer</a></h1>
+
+
+
+<p class="blurb">Flexible and extensible Mapper algorithm implementation</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=pablodecm&repo=cartographer&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Introduction</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#what-is-cartographer">What is cartographer?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#references">References</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#contents">Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about_mapper.html">Theoretical miminum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Modules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">More Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">make_circles_example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chemdiab_example.html">chemdiab dataset example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="digits_example.html">digits example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../examples.html">More Examples</a><ul>
+      <li>Previous: <a href="../examples.html" title="previous chapter">More Examples</a></li>
+      <li>Next: <a href="chemdiab_example.html" title="next chapter">chemdiab dataset example</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 9ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="section" id="make_circles_example">
+<h1>make_circles_example<a class="headerlink" href="#make_circles_example" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">cartographer.mapper</span> <span class="k">import</span> <span class="n">Mapper</span>
+<span class="kn">from</span> <span class="nn">cartographer.coverers</span> <span class="k">import</span> <span class="n">HyperRectangleCoverer</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">datasets</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">MinMaxScaler</span>
+<span class="n">data</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">make_circles</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;coverer__intervals&#39;</span> <span class="p">:</span><span class="mi">10</span><span class="p">,</span>
+          <span class="s1">&#39;coverer__overlap&#39;</span> <span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+          <span class="s1">&#39;clusterer__min_samples&#39;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+          <span class="s1">&#39;clusterer__eps&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">}</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">Mapper</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+
+<span class="n">scaled_data</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">scaled_data</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[1]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Mapper(clusterer=DBSCAN(algorithm=&#39;auto&#39;, eps=0.5, leaf_size=30, metric=&#39;euclidean&#39;,
+    min_samples=3, n_jobs=1, p=None),
+    coverer=HyperRectangleCoverer(intervals=10, overlap=0.1),
+    filterer=PCA(copy=True, iterated_power=&#39;auto&#39;, n_components=2, random_state=None,
+  svd_solver=&#39;auto&#39;, tol=0.0, whiten=False),
+    params=None)
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">cartographer.visualization</span> <span class="k">import</span> <span class="n">html_graph</span>
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="k">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span><span class="n">html_graph</span><span class="p">(</span><span class="n">m</span><span class="p">,</span>
+                <span class="p">{</span><span class="s2">&quot;labels&quot;</span><span class="p">:</span><span class="n">labels</span><span class="p">},</span>
+                <span class="p">{</span><span class="s2">&quot;y[0]&quot;</span> <span class="p">:</span> <span class="n">scaled_data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span>
+                 <span class="s2">&quot;y[1]&quot;</span> <span class="p">:</span> <span class="n">scaled_data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]}))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[2]:
+</pre></div>
+</div>
+<div class="container">
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.links line {
+  stroke: #999;
+  stroke-opacity: 0.6;
+}
+
+.nodes circle {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+</style>
+<svg width="600" height="600"></svg>
+<script>
+require.config({
+paths: {
+                d3: "https://d3js.org/d3.v4.min"
+                }
+                });
+
+require(["d3"], function(d3) {
+
+var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
+
+var output = svg.select(function() { return this.parentNode; })
+
+// colour scales
+var ord_color = d3.scaleOrdinal(d3.schemeCategory20);
+var seq_color = d3.scaleSequential(d3.interpolateViridis);
+// size and width scales
+var radius_scale = d3.scaleLog().domain([1,10]).range([0.5,3])
+var stroke_scale = d3.scaleLog().domain([1,10]).range([0.5,1])
+
+var simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(function(d) { return d.id; }))
+    .force("charge", d3.forceManyBody().strength(-50))
+    .force("center", d3.forceCenter(width / 2, height / 2))
+    .force("xAxis",d3.forceX(width/2))
+    .force("yAxis",d3.forceY(height/2));
+
+var graph = {
+    "links": [
+        {
+            "source": "(2, 0)",
+            "target": "(3, 0)",
+            "n_common": 22
+        },
+        {
+            "source": "(2, 0)",
+            "target": "(11, 0)",
+            "n_common": 2
+        },
+        {
+            "source": "(2, 0)",
+            "target": "(12, 0)",
+            "n_common": 33
+        },
+        {
+            "source": "(2, 0)",
+            "target": "(13, 0)",
+            "n_common": 2
+        },
+        {
+            "source": "(3, 0)",
+            "target": "(4, 0)",
+            "n_common": 25
+        },
+        {
+            "source": "(3, 0)",
+            "target": "(12, 0)",
+            "n_common": 2
+        },
+        {
+            "source": "(3, 0)",
+            "target": "(13, 0)",
+            "n_common": 5
+        },
+        {
+            "source": "(4, 0)",
+            "target": "(5, 0)",
+            "n_common": 13
+        },
+        {
+            "source": "(5, 0)",
+            "target": "(6, 0)",
+            "n_common": 10
+        },
+        {
+            "source": "(6, 0)",
+            "target": "(7, 0)",
+            "n_common": 20
+        },
+        {
+            "source": "(6, 0)",
+            "target": "(16, 0)",
+            "n_common": 10
+        },
+        {
+            "source": "(6, 0)",
+            "target": "(17, 0)",
+            "n_common": 6
+        },
+        {
+            "source": "(7, 0)",
+            "target": "(16, 0)",
+            "n_common": 6
+        },
+        {
+            "source": "(7, 0)",
+            "target": "(17, 0)",
+            "n_common": 25
+        },
+        {
+            "source": "(10, 0)",
+            "target": "(11, 0)",
+            "n_common": 3
+        },
+        {
+            "source": "(10, 0)",
+            "target": "(20, 0)",
+            "n_common": 3
+        },
+        {
+            "source": "(10, 0)",
+            "target": "(21, 0)",
+            "n_common": 3
+        },
+        {
+            "source": "(11, 0)",
+            "target": "(12, 0)",
+            "n_common": 32
+        },
+        {
+            "source": "(11, 0)",
+            "target": "(20, 0)",
+            "n_common": 3
+        },
+        {
+            "source": "(11, 0)",
+            "target": "(21, 0)",
+            "n_common": 23
+        },
+        {
+            "source": "(12, 0)",
+            "target": "(13, 0)",
+            "n_common": 2
+        },
+        {
+            "source": "(16, 0)",
+            "target": "(17, 0)",
+            "n_common": 7
+        },
+        {
+            "source": "(17, 0)",
+            "target": "(18, 0)",
+            "n_common": 24
+        },
+        {
+            "source": "(18, 0)",
+            "target": "(28, 0)",
+            "n_common": 24
+        },
+        {
+            "source": "(18, 0)",
+            "target": "(29, 0)",
+            "n_common": 1
+        },
+        {
+            "source": "(20, 0)",
+            "target": "(21, 0)",
+            "n_common": 36
+        },
+        {
+            "source": "(20, 0)",
+            "target": "(30, 0)",
+            "n_common": 18
+        },
+        {
+            "source": "(20, 0)",
+            "target": "(31, 0)",
+            "n_common": 3
+        },
+        {
+            "source": "(21, 0)",
+            "target": "(30, 0)",
+            "n_common": 3
+        },
+        {
+            "source": "(21, 0)",
+            "target": "(31, 0)",
+            "n_common": 3
+        },
+        {
+            "source": "(28, 0)",
+            "target": "(29, 0)",
+            "n_common": 31
+        },
+        {
+            "source": "(28, 0)",
+            "target": "(38, 0)",
+            "n_common": 2
+        },
+        {
+            "source": "(28, 0)",
+            "target": "(39, 0)",
+            "n_common": 2
+        },
+        {
+            "source": "(29, 0)",
+            "target": "(38, 0)",
+            "n_common": 2
+        },
+        {
+            "source": "(29, 0)",
+            "target": "(39, 0)",
+            "n_common": 16
+        },
+        {
+            "source": "(30, 0)",
+            "target": "(31, 0)",
+            "n_common": 5
+        },
+        {
+            "source": "(30, 0)",
+            "target": "(40, 0)",
+            "n_common": 16
+        },
+        {
+            "source": "(33, 0)",
+            "target": "(34, 0)",
+            "n_common": 62
+        },
+        {
+            "source": "(33, 0)",
+            "target": "(43, 0)",
+            "n_common": 66
+        },
+        {
+            "source": "(33, 0)",
+            "target": "(44, 0)",
+            "n_common": 37
+        },
+        {
+            "source": "(34, 0)",
+            "target": "(35, 0)",
+            "n_common": 57
+        },
+        {
+            "source": "(34, 0)",
+            "target": "(43, 0)",
+            "n_common": 37
+        },
+        {
+            "source": "(34, 0)",
+            "target": "(44, 0)",
+            "n_common": 68
+        },
+        {
+            "source": "(35, 0)",
+            "target": "(36, 0)",
+            "n_common": 32
+        },
+        {
+            "source": "(35, 0)",
+            "target": "(45, 0)",
+            "n_common": 58
+        },
+        {
+            "source": "(35, 0)",
+            "target": "(46, 0)",
+            "n_common": 17
+        },
+        {
+            "source": "(36, 0)",
+            "target": "(45, 0)",
+            "n_common": 17
+        },
+        {
+            "source": "(36, 0)",
+            "target": "(46, 0)",
+            "n_common": 29
+        },
+        {
+            "source": "(38, 0)",
+            "target": "(39, 0)",
+            "n_common": 6
+        },
+        {
+            "source": "(39, 0)",
+            "target": "(49, 0)",
+            "n_common": 18
+        },
+        {
+            "source": "(40, 0)",
+            "target": "(50, 0)",
+            "n_common": 16
+        },
+        {
+            "source": "(43, 0)",
+            "target": "(44, 0)",
+            "n_common": 66
+        },
+        {
+            "source": "(43, 0)",
+            "target": "(53, 0)",
+            "n_common": 63
+        },
+        {
+            "source": "(43, 0)",
+            "target": "(54, 0)",
+            "n_common": 1
+        },
+        {
+            "source": "(44, 0)",
+            "target": "(53, 0)",
+            "n_common": 1
+        },
+        {
+            "source": "(44, 0)",
+            "target": "(54, 0)",
+            "n_common": 1
+        },
+        {
+            "source": "(45, 0)",
+            "target": "(46, 0)",
+            "n_common": 75
+        },
+        {
+            "source": "(45, 0)",
+            "target": "(55, 0)",
+            "n_common": 3
+        },
+        {
+            "source": "(45, 0)",
+            "target": "(56, 0)",
+            "n_common": 3
+        },
+        {
+            "source": "(46, 0)",
+            "target": "(55, 0)",
+            "n_common": 3
+        },
+        {
+            "source": "(46, 0)",
+            "target": "(56, 0)",
+            "n_common": 55
+        },
+        {
+            "source": "(49, 0)",
+            "target": "(59, 0)",
+            "n_common": 18
+        },
+        {
+            "source": "(50, 0)",
+            "target": "(60, 0)",
+            "n_common": 14
+        },
+        {
+            "source": "(53, 0)",
+            "target": "(54, 0)",
+            "n_common": 60
+        },
+        {
+            "source": "(53, 0)",
+            "target": "(63, 0)",
+            "n_common": 37
+        },
+        {
+            "source": "(53, 0)",
+            "target": "(64, 0)",
+            "n_common": 19
+        },
+        {
+            "source": "(54, 0)",
+            "target": "(55, 0)",
+            "n_common": 3
+        },
+        {
+            "source": "(54, 0)",
+            "target": "(63, 0)",
+            "n_common": 19
+        },
+        {
+            "source": "(54, 0)",
+            "target": "(64, 0)",
+            "n_common": 72
+        },
+        {
+            "source": "(54, 0)",
+            "target": "(65, 0)",
+            "n_common": 3
+        },
+        {
+            "source": "(55, 0)",
+            "target": "(56, 0)",
+            "n_common": 83
+        },
+        {
+            "source": "(55, 0)",
+            "target": "(64, 0)",
+            "n_common": 3
+        },
+        {
+            "source": "(55, 0)",
+            "target": "(65, 0)",
+            "n_common": 85
+        },
+        {
+            "source": "(55, 0)",
+            "target": "(66, 0)",
+            "n_common": 27
+        },
+        {
+            "source": "(56, 0)",
+            "target": "(65, 0)",
+            "n_common": 27
+        },
+        {
+            "source": "(56, 0)",
+            "target": "(66, 0)",
+            "n_common": 37
+        },
+        {
+            "source": "(59, 0)",
+            "target": "(69, 0)",
+            "n_common": 14
+        },
+        {
+            "source": "(60, 0)",
+            "target": "(61, 0)",
+            "n_common": 5
+        },
+        {
+            "source": "(60, 0)",
+            "target": "(70, 0)",
+            "n_common": 19
+        },
+        {
+            "source": "(60, 0)",
+            "target": "(71, 0)",
+            "n_common": 2
+        },
+        {
+            "source": "(61, 0)",
+            "target": "(70, 0)",
+            "n_common": 2
+        },
+        {
+            "source": "(61, 0)",
+            "target": "(71, 0)",
+            "n_common": 4
+        },
+        {
+            "source": "(63, 0)",
+            "target": "(64, 0)",
+            "n_common": 35
+        },
+        {
+            "source": "(64, 0)",
+            "target": "(65, 0)",
+            "n_common": 54
+        },
+        {
+            "source": "(65, 0)",
+            "target": "(66, 0)",
+            "n_common": 34
+        },
+        {
+            "source": "(68, 0)",
+            "target": "(69, 0)",
+            "n_common": 14
+        },
+        {
+            "source": "(68, 0)",
+            "target": "(78, 0)",
+            "n_common": 8
+        },
+        {
+            "source": "(68, 0)",
+            "target": "(79, 0)",
+            "n_common": 7
+        },
+        {
+            "source": "(69, 0)",
+            "target": "(78, 0)",
+            "n_common": 7
+        },
+        {
+            "source": "(69, 0)",
+            "target": "(79, 0)",
+            "n_common": 18
+        },
+        {
+            "source": "(70, 0)",
+            "target": "(71, 0)",
+            "n_common": 30
+        },
+        {
+            "source": "(70, 0)",
+            "target": "(81, 0)",
+            "n_common": 2
+        },
+        {
+            "source": "(71, 0)",
+            "target": "(81, 0)",
+            "n_common": 28
+        },
+        {
+            "source": "(71, 0)",
+            "target": "(82, 0)",
+            "n_common": 1
+        },
+        {
+            "source": "(78, 0)",
+            "target": "(79, 0)",
+            "n_common": 32
+        },
+        {
+            "source": "(78, 0)",
+            "target": "(88, 0)",
+            "n_common": 26
+        },
+        {
+            "source": "(81, 0)",
+            "target": "(82, 0)",
+            "n_common": 19
+        },
+        {
+            "source": "(82, 0)",
+            "target": "(83, 0)",
+            "n_common": 12
+        },
+        {
+            "source": "(82, 0)",
+            "target": "(92, 0)",
+            "n_common": 32
+        },
+        {
+            "source": "(82, 0)",
+            "target": "(93, 0)",
+            "n_common": 8
+        },
+        {
+            "source": "(83, 0)",
+            "target": "(92, 0)",
+            "n_common": 8
+        },
+        {
+            "source": "(83, 0)",
+            "target": "(93, 0)",
+            "n_common": 13
+        },
+        {
+            "source": "(86, 0)",
+            "target": "(87, 0)",
+            "n_common": 13
+        },
+        {
+            "source": "(86, 0)",
+            "target": "(95, 0)",
+            "n_common": 1
+        },
+        {
+            "source": "(86, 0)",
+            "target": "(96, 0)",
+            "n_common": 14
+        },
+        {
+            "source": "(86, 0)",
+            "target": "(97, 0)",
+            "n_common": 7
+        },
+        {
+            "source": "(87, 0)",
+            "target": "(88, 0)",
+            "n_common": 24
+        },
+        {
+            "source": "(87, 0)",
+            "target": "(96, 0)",
+            "n_common": 7
+        },
+        {
+            "source": "(87, 0)",
+            "target": "(97, 0)",
+            "n_common": 24
+        },
+        {
+            "source": "(92, 0)",
+            "target": "(93, 0)",
+            "n_common": 25
+        },
+        {
+            "source": "(93, 0)",
+            "target": "(94, 0)",
+            "n_common": 12
+        },
+        {
+            "source": "(94, 0)",
+            "target": "(95, 0)",
+            "n_common": 19
+        },
+        {
+            "source": "(95, 0)",
+            "target": "(96, 0)",
+            "n_common": 21
+        },
+        {
+            "source": "(96, 0)",
+            "target": "(97, 0)",
+            "n_common": 19
+        }
+    ],
+    "categories_and_scales": [
+        {
+            "name": "int_id",
+            "type": "category"
+        },
+        {
+            "name": "labels",
+            "type": "category"
+        },
+        {
+            "name": "y[0]",
+            "type": "scale"
+        },
+        {
+            "name": "y[1]",
+            "type": "scale"
+        }
+    ],
+    "nodes": [
+        {
+            "id": "(2, 0)",
+            "int_id": 0,
+            "y[1]": 0.26954171578397834,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.0868017698478951,
+            "n_members": 72
+        },
+        {
+            "id": "(3, 0)",
+            "int_id": 1,
+            "y[1]": 0.3506167713014304,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.05934696135296479,
+            "n_members": 107
+        },
+        {
+            "id": "(4, 0)",
+            "int_id": 2,
+            "y[1]": 0.4447420055883958,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.03970992642635316,
+            "n_members": 111
+        },
+        {
+            "id": "(5, 0)",
+            "int_id": 3,
+            "y[1]": 0.551462321756795,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.03814800285179816,
+            "n_members": 97
+        },
+        {
+            "id": "(6, 0)",
+            "int_id": 4,
+            "y[1]": 0.6530458073881097,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.061798698412934776,
+            "n_members": 103
+        },
+        {
+            "id": "(7, 0)",
+            "int_id": 5,
+            "y[1]": 0.7238372870053367,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.08695798314734549,
+            "n_members": 55
+        },
+        {
+            "id": "(10, 0)",
+            "int_id": 6,
+            "y[1]": 0.10635738723415254,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.19652784379638186,
+            "n_members": 3
+        },
+        {
+            "id": "(11, 0)",
+            "int_id": 7,
+            "y[1]": 0.17105452885290878,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.16575197112581874,
+            "n_members": 97
+        },
+        {
+            "id": "(12, 0)",
+            "int_id": 8,
+            "y[1]": 0.23032725204397622,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.12319254500688415,
+            "n_members": 96
+        },
+        {
+            "id": "(13, 0)",
+            "int_id": 9,
+            "y[1]": 0.3098541317597607,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.09696636535660447,
+            "n_members": 5
+        },
+        {
+            "id": "(16, 0)",
+            "int_id": 10,
+            "y[1]": 0.6897515232169747,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.09999001526265204,
+            "n_members": 11
+        },
+        {
+            "id": "(17, 0)",
+            "int_id": 11,
+            "y[1]": 0.7602253037461751,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.12497387547412585,
+            "n_members": 94
+        },
+        {
+            "id": "(18, 0)",
+            "int_id": 12,
+            "y[1]": 0.827531132471246,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.17084280921733874,
+            "n_members": 90
+        },
+        {
+            "id": "(20, 0)",
+            "int_id": 13,
+            "y[1]": 0.08816765116234629,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.2698850867253,
+            "n_members": 67
+        },
+        {
+            "id": "(21, 0)",
+            "int_id": 14,
+            "y[1]": 0.12024452416477496,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.2357558457619016,
+            "n_members": 92
+        },
+        {
+            "id": "(28, 0)",
+            "int_id": 15,
+            "y[1]": 0.8741894793009714,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.2342499197831186,
+            "n_members": 93
+        },
+        {
+            "id": "(29, 0)",
+            "int_id": 16,
+            "y[1]": 0.9093234469061545,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.27188942965640567,
+            "n_members": 59
+        },
+        {
+            "id": "(30, 0)",
+            "int_id": 17,
+            "y[1]": 0.058902743857192796,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.3500609625336176,
+            "n_members": 105
+        },
+        {
+            "id": "(31, 0)",
+            "int_id": 18,
+            "y[1]": 0.09534691422314666,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.3115091443119486,
+            "n_members": 5
+        },
+        {
+            "id": "(33, 0)",
+            "int_id": 19,
+            "y[1]": 0.39272554731948295,
+            "color": 1,
+            "labels": 1,
+            "y[0]": 0.39318184606666867,
+            "n_members": 95
+        },
+        {
+            "id": "(34, 0)",
+            "int_id": 20,
+            "y[1]": 0.44812091066564247,
+            "color": 1,
+            "labels": 1,
+            "y[0]": 0.3715092424234023,
+            "n_members": 364
+        },
+        {
+            "id": "(35, 0)",
+            "int_id": 21,
+            "y[1]": 0.5470095875977975,
+            "color": 1,
+            "labels": 1,
+            "y[0]": 0.37115633370640205,
+            "n_members": 345
+        },
+        {
+            "id": "(36, 0)",
+            "int_id": 22,
+            "y[1]": 0.6062765603886741,
+            "color": 1,
+            "labels": 1,
+            "y[0]": 0.38780590906695295,
+            "n_members": 56
+        },
+        {
+            "id": "(38, 0)",
+            "int_id": 23,
+            "y[1]": 0.9013142061655023,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.31661288952962474,
+            "n_members": 6
+        },
+        {
+            "id": "(39, 0)",
+            "int_id": 24,
+            "y[1]": 0.9333816565738582,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.34808004406038645,
+            "n_members": 108
+        },
+        {
+            "id": "(40, 0)",
+            "int_id": 25,
+            "y[1]": 0.03671654678944726,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.4491048002430517,
+            "n_members": 107
+        },
+        {
+            "id": "(43, 0)",
+            "int_id": 26,
+            "y[1]": 0.37180229631694744,
+            "color": 1,
+            "labels": 1,
+            "y[0]": 0.44922783746678663,
+            "n_members": 371
+        },
+        {
+            "id": "(44, 0)",
+            "int_id": 27,
+            "y[1]": 0.4077280362786494,
+            "color": 1,
+            "labels": 1,
+            "y[0]": 0.40888955547573586,
+            "n_members": 100
+        },
+        {
+            "id": "(45, 0)",
+            "int_id": 28,
+            "y[1]": 0.5903614821926841,
+            "color": 1,
+            "labels": 1,
+            "y[0]": 0.4158305871733808,
+            "n_members": 122
+        },
+        {
+            "id": "(46, 0)",
+            "int_id": 29,
+            "y[1]": 0.6245125879365396,
+            "color": 1,
+            "labels": 1,
+            "y[0]": 0.45180639330283373,
+            "n_members": 340
+        },
+        {
+            "id": "(49, 0)",
+            "int_id": 30,
+            "y[1]": 0.9557865696396832,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.4495470672716138,
+            "n_members": 110
+        },
+        {
+            "id": "(50, 0)",
+            "int_id": 31,
+            "y[1]": 0.036372620373119745,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.5492429010796943,
+            "n_members": 100
+        },
+        {
+            "id": "(53, 0)",
+            "int_id": 32,
+            "y[1]": 0.3716954078227921,
+            "color": 1,
+            "labels": 1,
+            "y[0]": 0.5483396474989817,
+            "n_members": 350
+        },
+        {
+            "id": "(54, 0)",
+            "int_id": 33,
+            "y[1]": 0.41834612488011835,
+            "color": 1,
+            "labels": 1,
+            "y[0]": 0.5879453919880986,
+            "n_members": 127
+        },
+        {
+            "id": "(55, 0)",
+            "int_id": 34,
+            "y[1]": 0.585116262582605,
+            "color": 1,
+            "labels": 1,
+            "y[0]": 0.585754436143453,
+            "n_members": 162
+        },
+        {
+            "id": "(56, 0)",
+            "int_id": 35,
+            "y[1]": 0.6236782194256013,
+            "color": 1,
+            "labels": 1,
+            "y[0]": 0.5469433544974904,
+            "n_members": 336
+        },
+        {
+            "id": "(59, 0)",
+            "int_id": 36,
+            "y[1]": 0.954783425586642,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.5476669499349418,
+            "n_members": 105
+        },
+        {
+            "id": "(60, 0)",
+            "int_id": 37,
+            "y[1]": 0.05965877419287802,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.6517927994981504,
+            "n_members": 106
+        },
+        {
+            "id": "(61, 0)",
+            "int_id": 38,
+            "y[1]": 0.10272405861324893,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.6899603604290555,
+            "n_members": 7
+        },
+        {
+            "id": "(63, 0)",
+            "int_id": 39,
+            "y[1]": 0.39434150129806117,
+            "color": 1,
+            "labels": 1,
+            "y[0]": 0.6061666063642801,
+            "n_members": 57
+        },
+        {
+            "id": "(64, 0)",
+            "int_id": 40,
+            "y[1]": 0.4526073224068357,
+            "color": 1,
+            "labels": 1,
+            "y[0]": 0.6230016162712531,
+            "n_members": 321
+        },
+        {
+            "id": "(65, 0)",
+            "int_id": 41,
+            "y[1]": 0.5462274563523559,
+            "color": 1,
+            "labels": 1,
+            "y[0]": 0.6214132552181363,
+            "n_members": 335
+        },
+        {
+            "id": "(66, 0)",
+            "int_id": 42,
+            "y[1]": 0.605670191649737,
+            "color": 1,
+            "labels": 1,
+            "y[0]": 0.6018517735935649,
+            "n_members": 47
+        },
+        {
+            "id": "(68, 0)",
+            "int_id": 43,
+            "y[1]": 0.8986960328686723,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.6873902166423072,
+            "n_members": 15
+        },
+        {
+            "id": "(69, 0)",
+            "int_id": 44,
+            "y[1]": 0.9341113200503199,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.6527528500613601,
+            "n_members": 103
+        },
+        {
+            "id": "(70, 0)",
+            "int_id": 45,
+            "y[1]": 0.08851766520483116,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.72569403499341,
+            "n_members": 64
+        },
+        {
+            "id": "(71, 0)",
+            "int_id": 46,
+            "y[1]": 0.12572283676490145,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.7632409336945065,
+            "n_members": 97
+        },
+        {
+            "id": "(78, 0)",
+            "int_id": 47,
+            "y[1]": 0.8715353363354127,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.7600855911688348,
+            "n_members": 111
+        },
+        {
+            "id": "(79, 0)",
+            "int_id": 48,
+            "y[1]": 0.9079692210207744,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.7234374038959847,
+            "n_members": 52
+        },
+        {
+            "id": "(81, 0)",
+            "int_id": 49,
+            "y[1]": 0.1689287795377876,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.8234992746374395,
+            "n_members": 83
+        },
+        {
+            "id": "(82, 0)",
+            "int_id": 50,
+            "y[1]": 0.24338243076508934,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.8755079406243946,
+            "n_members": 104
+        },
+        {
+            "id": "(83, 0)",
+            "int_id": 51,
+            "y[1]": 0.30763387679425735,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.8988360900849822,
+            "n_members": 17
+        },
+        {
+            "id": "(86, 0)",
+            "int_id": 52,
+            "y[1]": 0.6855652835188031,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.8976098731961581,
+            "n_members": 20
+        },
+        {
+            "id": "(87, 0)",
+            "int_id": 53,
+            "y[1]": 0.7583337049232893,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.8725318539462188,
+            "n_members": 108
+        },
+        {
+            "id": "(88, 0)",
+            "int_id": 54,
+            "y[1]": 0.8249027532626763,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.8251985801953627,
+            "n_members": 77
+        },
+        {
+            "id": "(92, 0)",
+            "int_id": 55,
+            "y[1]": 0.280937209617404,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.9098901730477913,
+            "n_members": 55
+        },
+        {
+            "id": "(93, 0)",
+            "int_id": 56,
+            "y[1]": 0.3468702402019428,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.9308089038209191,
+            "n_members": 108
+        },
+        {
+            "id": "(94, 0)",
+            "int_id": 57,
+            "y[1]": 0.45158653766749146,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.9529618052685254,
+            "n_members": 103
+        },
+        {
+            "id": "(95, 0)",
+            "int_id": 58,
+            "y[1]": 0.5500524169224066,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.9516843016153477,
+            "n_members": 105
+        },
+        {
+            "id": "(96, 0)",
+            "int_id": 59,
+            "y[1]": 0.6482583660700427,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.9300640887855925,
+            "n_members": 108
+        },
+        {
+            "id": "(97, 0)",
+            "int_id": 60,
+            "y[1]": 0.7191069225643898,
+            "color": 1,
+            "labels": 0,
+            "y[0]": 0.9095927757952119,
+            "n_members": 44
+        }
+    ]
+}
+
+var link = svg.append("g")
+    .attr("class", "links")
+  .selectAll("line")
+  .data(graph.links)
+  .enter().append("line")
+    .attr("stroke-width", function(d) { return stroke_scale(d.n_common); });
+
+var node = svg.append("g")
+    .attr("class", "nodes")
+  .selectAll("circle")
+  .data(graph.nodes)
+  .enter().append("circle")
+    .attr("r", function(d) { return radius_scale(d.n_members); })
+    .attr("fill", function(d) { return ord_color(d.int_id); })
+    .call(d3.drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended));
+
+node.append("title")
+    .text(function(d) { return d.id; });
+
+simulation
+    .nodes(graph.nodes)
+    .on("tick", ticked);
+
+simulation.force("link")
+    .links(graph.links);
+
+
+var select = output.append("select")
+                     .on("change", menuchanged);
+
+select.selectAll("option")
+      .data(graph.categories_and_scales)
+      .enter()
+        .append("option")
+        .attr("value", function(d) {return d.name; })
+        .attr("type", function(d) {return d.type; })
+        .text(function (d) { return d.name; });
+
+function ticked() {
+  link
+      .attr("x1", function(d) { return d.source.x; })
+      .attr("y1", function(d) { return d.source.y; })
+      .attr("x2", function(d) { return d.target.x; })
+      .attr("y2", function(d) { return d.target.y; });
+
+  node
+      .attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; });
+}
+
+function dragstarted(d) {
+  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+  d.fx = d.x;
+  d.fy = d.y;
+}
+
+function dragged(d) {
+  d.fx = d3.event.x;
+  d.fy = d3.event.y;
+}
+
+function dragended(d) {
+  if (!d3.event.active) simulation.alphaTarget(0);
+  d.fx = null;
+  d.fy = null;
+}
+
+function menuchanged() {
+  // get the index of the selected element
+  var selectedIndex = d3.event.target.selectedIndex;
+  var selectedDOMElement = d3.event.target.children[selectedIndex];
+  var selection = d3.select(selectedDOMElement);
+  var v_name = selection.text()
+  var v_type = selection.attr("type")
+  var min_var = d3.min(graph.nodes, function(d) { return d[v_name]; });
+  var max_var = d3.max(graph.nodes, function(d) { return d[v_name]; });
+  node.style("fill", function(d) {
+    if (v_type == "category") {
+      return ord_color(d[v_name]);
+    }
+    seq_color.domain([min_var,max_var]);
+    return seq_color(d[v_name]);
+  });
+}
+});
+
+</script></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
+<span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="k">import</span> <span class="n">cm</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">1.2</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">1.2</span><span class="p">])</span>
+
+<span class="n">color</span><span class="o">=</span><span class="nb">iter</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">rainbow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="o">.</span><span class="n">coverer</span><span class="o">.</span><span class="n">lowerbounds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+
+<span class="k">for</span> <span class="n">lb</span><span class="p">,</span> <span class="n">up</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">coverer</span><span class="o">.</span><span class="n">lowerbounds</span><span class="p">,</span><span class="n">m</span><span class="o">.</span><span class="n">coverer</span><span class="o">.</span><span class="n">upperbounds</span><span class="p">):</span>
+    <span class="n">c</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">lb</span><span class="p">,</span><span class="o">*</span><span class="p">(</span><span class="n">up</span><span class="o">-</span><span class="n">lb</span><span class="p">),</span><span class="n">fill</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">c</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">scaled_data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">scaled_data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s2">&quot;.&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="container">
+</div>
+<div class="stderr container">
+<div class="highlight"><pre>
+/home/travis/miniconda/envs/cartographer/lib/python3.5/site-packages/matplotlib/font_manager.py:273: UserWarning: Matplotlib is building the font cache using fc-list. This may take a moment.
+  warnings.warn(&#39;Matplotlib is building the font cache using fc-list. This may take a moment.&#39;)
+/home/travis/miniconda/envs/cartographer/lib/python3.5/site-packages/matplotlib/font_manager.py:273: UserWarning: Matplotlib is building the font cache using fc-list. This may take a moment.
+  warnings.warn(&#39;Matplotlib is building the font cache using fc-list. This may take a moment.&#39;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/examples_make_circles_example_3_1.png" src="../_images/examples_make_circles_example_3_1.png" />
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2016, Pablo de Castro.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/examples/make_circles_example.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

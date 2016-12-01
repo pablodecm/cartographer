@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cartographer.mapper &#8212; cartographer 0.1.1dev0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.1dev0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/require.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="cartographer 0.1.1dev0 documentation" href="index.html" />
+    <link rel="up" title="Modules" href="modules.html" />
+    <link rel="prev" title="Modules" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">cartographer</a></h1>
+
+
+
+<p class="blurb">Flexible and extensible Mapper algorithm implementation</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=pablodecm&repo=cartographer&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Introduction</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#what-is-cartographer">What is cartographer?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#references">References</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#contents">Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about_mapper.html">Theoretical miminum</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Mapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coverers.html">Coverers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html">Visualization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">More Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Modules</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">Modules</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-cartographer.mapper">
+<span id="cartographer-mapper"></span><h1><a class="reference internal" href="#module-cartographer.mapper" title="cartographer.mapper"><code class="xref py py-mod docutils literal"><span class="pre">cartographer.mapper</span></code></a><a class="headerlink" href="#module-cartographer.mapper" title="Permalink to this headline">¶</a></h1>
+<p>Mapper algorithm implementation</p>
+<dl class="class">
+<dt id="cartographer.mapper.Mapper">
+<em class="property">class </em><code class="descclassname">cartographer.mapper.</code><code class="descname">Mapper</code><span class="sig-paren">(</span><em>filterer=PCA(copy=True</em>, <em>iterated_power='auto'</em>, <em>n_components=2</em>, <em>random_state=None</em>, <em>svd_solver='auto'</em>, <em>tol=0.0</em>, <em>whiten=False)</em>, <em>coverer=HyperRectangleCoverer(intervals=10</em>, <em>overlap=0.5)</em>, <em>clusterer=DBSCAN(algorithm='auto'</em>, <em>eps=0.5</em>, <em>leaf_size=30</em>, <em>metric='euclidean'</em>, <em>min_samples=5</em>, <em>n_jobs=1</em>, <em>p=None)</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cartographer/mapper.html#Mapper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartographer.mapper.Mapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mapper algorithm implementation</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>filterer</strong> : scikit-learn transformer, default=PCA(n_components=2)</p>
+<blockquote>
+<div><p>If y is not specified in the fit method the lense/filter values used will
+be the result of the application of this transform Pipeline to the
+input data will be considered.</p>
+</div></blockquote>
+<p><strong>coverer: instance of Coverer object, default=HyperRectangleCoverer()</strong></p>
+<p><strong>clusterer: scikit-learn-like cluster estimator, default=DBSCAN()</strong></p>
+<p><strong>params: dict of params for filterer, coverer and clusterer, default={}</strong></p>
+<blockquote class="last">
+<div><p>Parameters to be passed to the filter, coverer and cluster objects</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#cartographer.mapper.Mapper.fit" title="cartographer.mapper.Mapper.fit"><code class="xref py py-obj docutils literal"><span class="pre">fit</span></code></a>(X[,&nbsp;y])</td>
+<td>Creates a Mapper graph for the input data</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">fit_predict</span></code>(X[,&nbsp;y])</td>
+<td>Performs clustering on X and returns cluster labels.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_params</span></code>([deep])</td>
+<td>Get parameters for this estimator.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">set_params</span></code>(\*\*params)</td>
+<td>Set the parameters of this estimator.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="cartographer.mapper.Mapper.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cartographer/mapper.html#Mapper.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartographer.mapper.Mapper.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a Mapper graph for the input data</p>
+<p>If y is not None but a bidimensional array-like, its columns are used
+as lens/filter. If is None, the filters attribute is used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>X</strong> : array-like, shape=(n_samples, n_features)</p>
+<blockquote>
+<div><p>Data on which the mapper algorithm will be applied.</p>
+</div></blockquote>
+<p><strong>y</strong> : array-like, shape=(n_samples, n_filters), optional</p>
+<blockquote class="last">
+<div><p>Lense/filter values for each samples, if not specified the class
+attribute filters will be used.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2016, Pablo de Castro.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/mapper.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

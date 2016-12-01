@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cartographer.mapper &#8212; cartographer 0.1.1dev0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.1dev0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/require.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="top" title="cartographer 0.1.1dev0 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">cartographer</a></h1>
+
+
+
+<p class="blurb">Flexible and extensible Mapper algorithm implementation</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=pablodecm&repo=cartographer&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about_mapper.html">Theoretical miminum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">More Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for cartographer.mapper</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Mapper algorithm implementation</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="k">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">ClusterMixin</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="k">import</span> <span class="n">DBSCAN</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="k">import</span> <span class="n">PCA</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">.coverers</span> <span class="k">import</span> <span class="n">HyperRectangleCoverer</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+
+
+<div class="viewcode-block" id="Mapper"><a class="viewcode-back" href="../../mapper.html#cartographer.mapper.Mapper">[docs]</a><span class="k">class</span> <span class="nc">Mapper</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">ClusterMixin</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot; Mapper algorithm implementation</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    filterer : scikit-learn transformer, default=PCA(n_components=2)</span>
+<span class="sd">      If y is not specified in the fit method the lense/filter values used will</span>
+<span class="sd">      be the result of the application of this transform Pipeline to the</span>
+<span class="sd">      input data will be considered.</span>
+
+<span class="sd">    coverer: instance of Coverer object, default=HyperRectangleCoverer()</span>
+
+<span class="sd">    clusterer: scikit-learn-like cluster estimator, default=DBSCAN()</span>
+
+<span class="sd">    params: dict of params for filterer, coverer and clusterer, default={}</span>
+<span class="sd">      Parameters to be passed to the filter, coverer and cluster objects</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filterer</span><span class="o">=</span><span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                 <span class="n">coverer</span><span class="o">=</span><span class="n">HyperRectangleCoverer</span><span class="p">(),</span>
+                 <span class="n">clusterer</span><span class="o">=</span><span class="n">DBSCAN</span><span class="p">(),</span>
+                 <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filterer</span> <span class="o">=</span> <span class="n">filterer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coverer</span> <span class="o">=</span> <span class="n">coverer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clusterer</span> <span class="o">=</span> <span class="n">clusterer</span>
+        <span class="k">if</span> <span class="n">params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Mapper.fit"><a class="viewcode-back" href="../../mapper.html#cartographer.mapper.Mapper.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Creates a Mapper graph for the input data</span>
+
+<span class="sd">        If y is not None but a bidimensional array-like, its columns are used</span>
+<span class="sd">        as lens/filter. If is None, the filters attribute is used.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        X : array-like, shape=(n_samples, n_features)</span>
+<span class="sd">          Data on which the mapper algorithm will be applied.</span>
+
+<span class="sd">        y : array-like, shape=(n_samples, n_filters), optional</span>
+<span class="sd">          Lense/filter values for each samples, if not specified the class</span>
+<span class="sd">          attribute filters will be used.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># if y no specified, use filterer object to obtain filter map</span>
+        <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filterer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="c1"># obtain matrix of partition membership</span>
+        <span class="n">m_matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">coverer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="c1"># overlap between partitions</span>
+        <span class="n">o_matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">coverer</span><span class="o">.</span><span class="n">overlap_matrix</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">clusterize_samples</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+            <span class="n">ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ids</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[]</span>
+            <span class="n">s_labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clusterer</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">ids</span><span class="p">])</span>
+            <span class="c1"># get distinct labels (remove noise -1)</span>
+            <span class="n">u_labels</span> <span class="o">=</span> <span class="n">s_labels</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">s_labels</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span>
+            <span class="c1"># if no clusters return empty list or list of np.array otherwise</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">u_labels</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">ids</span><span class="p">[</span><span class="n">s_labels</span> <span class="o">==</span> <span class="n">label</span><span class="p">]</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">u_labels</span><span class="p">]</span>
+
+        <span class="c1"># clustering per partition</span>
+        <span class="c1"># this can be parallelized (e.g. joblib)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes_</span> <span class="o">=</span> <span class="p">[</span><span class="n">clusterize_samples</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span> <span class="k">for</span> <span class="n">mask</span> <span class="ow">in</span> <span class="n">m_matrix</span><span class="o">.</span><span class="n">T</span><span class="p">]</span>
+
+        <span class="c1"># obtain links checking cluster intersections</span>
+        <span class="c1"># in the future could also save the size of intersection</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">links_</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes_to_int_</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">p_idx</span><span class="p">,</span> <span class="n">o_ids</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">o_matrix</span><span class="p">):</span>
+            <span class="n">nc_p_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_</span><span class="p">[</span><span class="n">p_idx</span><span class="p">])</span>
+            <span class="c1"># map to go from (p, c) node notation to a single int</span>
+            <span class="k">for</span> <span class="n">c_p_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nc_p_idx</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">nodes_to_int_</span><span class="p">[(</span><span class="n">p_idx</span><span class="p">,</span> <span class="n">c_p_idx</span><span class="p">)]</span> <span class="o">=</span> <span class="n">counter</span>
+                <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="c1"># only check overlapping partitions for intersection</span>
+            <span class="k">for</span> <span class="n">o_idx</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">o_ids</span><span class="p">)[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="n">nc_o_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_</span><span class="p">[</span><span class="n">o_idx</span><span class="p">])</span>
+                <span class="k">for</span> <span class="n">c_p_idx</span><span class="p">,</span> <span class="n">c_o_idx</span> <span class="ow">in</span> \
+                        <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">nc_p_idx</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">nc_o_idx</span><span class="p">)):</span>
+                    <span class="n">intersect</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">intersect1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_</span><span class="p">[</span><span class="n">p_idx</span><span class="p">][</span><span class="n">c_p_idx</span><span class="p">],</span>
+                                               <span class="bp">self</span><span class="o">.</span><span class="n">nodes_</span><span class="p">[</span><span class="n">o_idx</span><span class="p">][</span><span class="n">c_o_idx</span><span class="p">],</span>
+                                               <span class="n">assume_unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">intersect</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">links_</span><span class="o">.</span><span class="n">append</span><span class="p">(((</span><span class="n">p_idx</span><span class="p">,</span> <span class="n">c_p_idx</span><span class="p">),</span>
+                                            <span class="p">(</span><span class="n">o_idx</span><span class="p">,</span> <span class="n">c_o_idx</span><span class="p">),</span>
+                                            <span class="n">intersect</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2016, Pablo de Castro.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

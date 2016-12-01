@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cartographer &#8212; cartographer 0.1.1dev0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.1dev0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/require.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="cartographer 0.1.1dev0 documentation" href="#" />
+    <link rel="next" title="Quickstart" href="quickstart.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">cartographer</a></h1>
+
+
+
+<p class="blurb">Flexible and extensible Mapper algorithm implementation</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=pablodecm&repo=cartographer&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-cartographer">What is cartographer?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contents">Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about_mapper.html">Theoretical miminum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">More Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="quickstart.html" title="next chapter">Quickstart</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cartographer">
+<h1>cartographer<a class="headerlink" href="#cartographer" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://travis-ci.org/pablodecm/cartographer"><img alt="Travis" src="https://travis-ci.org/pablodecm/cartographer.svg?branch=master" /></a> <a class="reference external" href="https://coveralls.io/github/pablodecm/cartographer?branch=master"><img alt="Coveralls" src="https://coveralls.io/repos/github/pablodecm/cartographer/badge.svg?branch=master" /></a> <a class="reference external" href="https://landscape.io/github/pablodecm/cartographer/master"><img alt="Landscape" src="https://landscape.io/github/pablodecm/cartographer/master/landscape.svg?style=flat" /></a> <a class="reference external" href="https://gitter.im/cartographer_/Lobby?utm_source=share-link&amp;utm_medium=link&amp;utm_campaign=share-link"><img alt="Gitter" src="https://badges.gitter.im/cartographer_.svg" /></a></p>
+<div class="section" id="what-is-cartographer">
+<h2>What is cartographer?<a class="headerlink" href="#what-is-cartographer" title="Permalink to this headline">¶</a></h2>
+<p>Cartographer is a Python library which implements the Mapper
+algorithm <a class="footnote-reference" href="#mapper-first" id="id1">[1]</a> for data visualization and exploration.
+The design goal of this particular implementation is to be flexible,
+extendible and fully <a class="reference external" href="http://scikit-learn.org/stable/">scikit-learn</a> compatible.</p>
+</div>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>The Mapper class can use any filter function, space cover and
+clustering method, all of them being scikit-learn API estimators.</li>
+<li>Built-in but customizable d3js graph visualizations to be used interactively
+from Jupyter Notebook.</li>
+<li>Reasonably efficient implementation, in the process of being
+parallelized and to use sparse data structructures when possible.</li>
+</ul>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>The Mapper algorithm of the library only requires a modern version
+of scikit-learn (and its dependencies numpy and scipy). Nevertheless,
+to run the examples, also a Jupyter Notebook installation with a Python
+Kernel and the seaborn visualization library are required.
+Both Python 2 and Python 3 are supported and tested for the time being, while
+the suggestion is using the later.</p>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>The documentation of this software library, together with more information
+the Mapper algorithm and some examples of its use can be found
+at <a class="reference external" href="http://pablodecm.com/cartographer">http://pablodecm.com/cartographer</a>.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<table class="docutils footnote" frame="void" id="mapper-first" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Singh, Gurjeet, Facundo Mémoli, and Gunnar E. Carlsson.
+&#8220;Topological Methods for the Analysis of High Dimensional Data Sets and
+3D Object Recognition.&#8221; SPBG. 2007.
+<a class="reference external" href="http://dx.doi.org/10.2312/SPBG/SPBG07/091-100">doi:10.2312/SPBG/SPBG07/091-100</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-cartographer">What is cartographer?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contents">Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about_mapper.html">Theoretical miminum</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="about_mapper.html#topological-data-analysis">Topological data analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="about_mapper.html#mapper-algorithm">Mapper algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="about_mapper.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mapper.html">Mapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coverers.html">Coverers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html">Visualization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">More Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/make_circles_example.html">make_circles_example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/chemdiab_example.html">chemdiab dataset example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/digits_example.html">digits example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2016, Pablo de Castro.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/index.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

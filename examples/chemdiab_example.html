@@ -1,0 +1,695 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>chemdiab dataset example &#8212; cartographer 0.1.1dev0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.1dev0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/require.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="cartographer 0.1.1dev0 documentation" href="../index.html" />
+    <link rel="up" title="More Examples" href="../examples.html" />
+    <link rel="next" title="digits example" href="digits_example.html" />
+    <link rel="prev" title="make_circles_example" href="make_circles_example.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">cartographer</a></h1>
+
+
+
+<p class="blurb">Flexible and extensible Mapper algorithm implementation</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=pablodecm&repo=cartographer&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Introduction</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#what-is-cartographer">What is cartographer?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#references">References</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#contents">Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about_mapper.html">Theoretical miminum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Modules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">More Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="make_circles_example.html">make_circles_example</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">chemdiab dataset example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="digits_example.html">digits example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../examples.html">More Examples</a><ul>
+      <li>Previous: <a href="make_circles_example.html" title="previous chapter">make_circles_example</a></li>
+      <li>Next: <a href="digits_example.html" title="next chapter">digits example</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 9ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="section" id="chemdiab-dataset-example">
+<h1>chemdiab dataset example<a class="headerlink" href="#chemdiab-dataset-example" title="Permalink to this headline">¶</a></h1>
+<p>Data fom <a class="reference external" href="https://cran.r-project.org/web/packages/locfit/locfit.pdf">locfit R
+package</a>.</p>
+<p>Numeric variables are rw, fpg, ga, ina and sspg. Classifier cc is the
+Diabetic type.</p>
+<p>Originally from <strong>Reaven, G. M. and Miller, R. G. (1979). An attempt to
+define the nature of chemical diabetes using a multidimensional
+analysis. Diabetologia 16, 17-24.</strong></p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="c1"># import data</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="k">import</span> <span class="n">path</span>
+<span class="n">dtype</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;rw&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">),(</span><span class="s2">&quot;fpg&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">),(</span><span class="s2">&quot;ga&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">),</span>
+         <span class="p">(</span><span class="s2">&quot;ina&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">),(</span><span class="s1">&#39;sspg&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">),(</span><span class="s1">&#39;cc&#39;</span><span class="p">,</span> <span class="s1">&#39;S20&#39;</span><span class="p">)]</span>
+<span class="n">file_path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span>
+                         <span class="n">inspect</span><span class="o">.</span><span class="n">getfile</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">())))</span>
+<span class="n">file_path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">file_path</span><span class="p">),</span><span class="s2">&quot;chemdiab.tab&quot;</span><span class="p">)</span>
+<span class="n">chemdiab</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="s2">&quot;chemdiab.tab&quot;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                         <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="c1"># get only numeric columns as numpy array</span>
+<span class="n">nam_cols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chemdiab</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">num_cols</span> <span class="o">=</span> <span class="n">chemdiab</span><span class="p">[</span><span class="n">nam_cols</span><span class="p">]</span>
+<span class="n">num_cols</span> <span class="o">=</span> <span class="n">num_cols</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>\
+                   <span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">num_cols</span><span class="o">.</span><span class="n">shape</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,))</span>
+
+<span class="n">cat</span><span class="p">,</span> <span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">chemdiab</span><span class="p">[</span><span class="n">chemdiab</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="mi">5</span><span class="p">]],</span>
+                     <span class="n">return_inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="c1"># clean and visualize data</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">FunctionTransformer</span>
+<span class="kn">from</span> <span class="nn">cartographer.filterers</span> <span class="k">import</span> <span class="n">KernelDensityFilterer</span>
+<span class="kn">from</span> <span class="nn">seaborn</span> <span class="k">import</span> <span class="n">plt</span>
+
+<span class="n">std_scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">scaled</span> <span class="o">=</span> <span class="n">std_scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">num_cols</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">flat_axs</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nam_cols</span><span class="p">):</span>
+    <span class="n">flat_axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">scaled</span><span class="p">[:,</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">flat_axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<span class="n">flat_axs</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
+<span class="n">flat_axs</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="container">
+</div>
+<div class="stderr container">
+<div class="highlight"><pre>
+/home/travis/miniconda/envs/cartographer/lib/python3.5/site-packages/matplotlib/font_manager.py:273: UserWarning: Matplotlib is building the font cache using fc-list. This may take a moment.
+  warnings.warn(&#39;Matplotlib is building the font cache using fc-list. This may take a moment.&#39;)
+/home/travis/miniconda/envs/cartographer/lib/python3.5/site-packages/matplotlib/font_manager.py:273: UserWarning: Matplotlib is building the font cache using fc-list. This may take a moment.
+  warnings.warn(&#39;Matplotlib is building the font cache using fc-list. This may take a moment.&#39;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[2]:
+</pre></div>
+</div>
+<div class="container">
+<img alt="../_images/examples_chemdiab_example_2_1.png" src="../_images/examples_chemdiab_example_2_1.png" />
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">cartographer.mapper</span> <span class="k">import</span> <span class="n">Mapper</span>
+<span class="kn">from</span> <span class="nn">cartographer.coverers</span> <span class="k">import</span> <span class="n">HyperRectangleCoverer</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="k">import</span> <span class="n">DBSCAN</span>
+<span class="kn">from</span> <span class="nn">cartographer.visualization</span> <span class="k">import</span> <span class="n">html_graph</span>
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="k">import</span> <span class="n">HTML</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">Mapper</span><span class="p">(</span><span class="n">coverer</span><span class="o">=</span><span class="n">HyperRectangleCoverer</span><span class="p">(</span><span class="n">intervals</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">overlap</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+           <span class="n">filterer</span><span class="o">=</span><span class="n">KernelDensityFilterer</span><span class="p">(</span><span class="n">bandwidth</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span>
+           <span class="n">clusterer</span><span class="o">=</span><span class="n">DBSCAN</span><span class="p">(</span><span class="n">min_samples</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">eps</span><span class="o">=</span><span class="mf">2.</span><span class="p">))</span>
+<span class="n">m</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">scaled</span><span class="p">)</span>
+
+<span class="n">HTML</span><span class="p">(</span><span class="n">html_graph</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;ind&quot;</span><span class="p">:</span> <span class="n">ind</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;kde&quot;</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">filterer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">scaled</span><span class="p">)}))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[3]:
+</pre></div>
+</div>
+<div class="container">
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.links line {
+  stroke: #999;
+  stroke-opacity: 0.6;
+}
+
+.nodes circle {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+</style>
+<svg width="600" height="600"></svg>
+<script>
+require.config({
+paths: {
+                d3: "https://d3js.org/d3.v4.min"
+                }
+                });
+
+require(["d3"], function(d3) {
+
+var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
+
+var output = svg.select(function() { return this.parentNode; })
+
+// colour scales
+var ord_color = d3.scaleOrdinal(d3.schemeCategory20);
+var seq_color = d3.scaleSequential(d3.interpolateViridis);
+// size and width scales
+var radius_scale = d3.scaleLog().domain([1,10]).range([0.5,3])
+var stroke_scale = d3.scaleLog().domain([1,10]).range([0.5,1])
+
+var simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(function(d) { return d.id; }))
+    .force("charge", d3.forceManyBody().strength(-50))
+    .force("center", d3.forceCenter(width / 2, height / 2))
+    .force("xAxis",d3.forceX(width/2))
+    .force("yAxis",d3.forceY(height/2));
+
+var graph = {
+    "links": [
+        {
+            "source": "(0, 0)",
+            "n_common": 2,
+            "target": "(1, 0)"
+        },
+        {
+            "source": "(0, 0)",
+            "n_common": 2,
+            "target": "(1, 1)"
+        },
+        {
+            "source": "(1, 0)",
+            "n_common": 7,
+            "target": "(2, 0)"
+        },
+        {
+            "source": "(1, 1)",
+            "n_common": 7,
+            "target": "(2, 0)"
+        },
+        {
+            "source": "(2, 0)",
+            "n_common": 6,
+            "target": "(3, 1)"
+        },
+        {
+            "source": "(3, 0)",
+            "n_common": 4,
+            "target": "(4, 0)"
+        },
+        {
+            "source": "(3, 1)",
+            "n_common": 9,
+            "target": "(4, 0)"
+        },
+        {
+            "source": "(4, 0)",
+            "n_common": 17,
+            "target": "(5, 0)"
+        },
+        {
+            "source": "(5, 0)",
+            "n_common": 10,
+            "target": "(6, 0)"
+        },
+        {
+            "source": "(6, 0)",
+            "n_common": 19,
+            "target": "(7, 0)"
+        },
+        {
+            "source": "(7, 0)",
+            "n_common": 12,
+            "target": "(8, 0)"
+        },
+        {
+            "source": "(8, 0)",
+            "n_common": 20,
+            "target": "(9, 0)"
+        }
+    ],
+    "nodes": [
+        {
+            "ind": 0,
+            "n_members": 4,
+            "kde": 0.00025404528901590767,
+            "int_id": 0,
+            "color": 1,
+            "id": "(0, 0)"
+        },
+        {
+            "ind": 0,
+            "n_members": 9,
+            "kde": 0.0007211744754535613,
+            "int_id": 1,
+            "color": 1,
+            "id": "(1, 0)"
+        },
+        {
+            "ind": 0,
+            "n_members": 9,
+            "kde": 0.0007211744754535613,
+            "int_id": 2,
+            "color": 1,
+            "id": "(1, 1)"
+        },
+        {
+            "ind": 2,
+            "n_members": 18,
+            "kde": 0.0009341031386082879,
+            "int_id": 3,
+            "color": 1,
+            "id": "(2, 0)"
+        },
+        {
+            "ind": 1,
+            "n_members": 5,
+            "kde": 0.0013982472250224603,
+            "int_id": 4,
+            "color": 1,
+            "id": "(3, 0)"
+        },
+        {
+            "ind": 0,
+            "n_members": 15,
+            "kde": 0.0013973405148759686,
+            "int_id": 5,
+            "color": 1,
+            "id": "(3, 1)"
+        },
+        {
+            "ind": 1,
+            "n_members": 30,
+            "kde": 0.0016883531029530945,
+            "int_id": 6,
+            "color": 1,
+            "id": "(4, 0)"
+        },
+        {
+            "ind": 1,
+            "n_members": 27,
+            "kde": 0.001976624108888839,
+            "int_id": 7,
+            "color": 1,
+            "id": "(5, 0)"
+        },
+        {
+            "ind": 1,
+            "n_members": 29,
+            "kde": 0.0024116067823689545,
+            "int_id": 8,
+            "color": 1,
+            "id": "(6, 0)"
+        },
+        {
+            "ind": 1,
+            "n_members": 31,
+            "kde": 0.0026460375039091826,
+            "int_id": 9,
+            "color": 1,
+            "id": "(7, 0)"
+        },
+        {
+            "ind": 1,
+            "n_members": 32,
+            "kde": 0.0030924877430048513,
+            "int_id": 10,
+            "color": 1,
+            "id": "(8, 0)"
+        },
+        {
+            "ind": 1,
+            "n_members": 30,
+            "kde": 0.0033195674965459557,
+            "int_id": 11,
+            "color": 1,
+            "id": "(9, 0)"
+        }
+    ],
+    "categories_and_scales": [
+        {
+            "name": "int_id",
+            "type": "category"
+        },
+        {
+            "name": "ind",
+            "type": "category"
+        },
+        {
+            "name": "kde",
+            "type": "scale"
+        }
+    ]
+}
+
+var link = svg.append("g")
+    .attr("class", "links")
+  .selectAll("line")
+  .data(graph.links)
+  .enter().append("line")
+    .attr("stroke-width", function(d) { return stroke_scale(d.n_common); });
+
+var node = svg.append("g")
+    .attr("class", "nodes")
+  .selectAll("circle")
+  .data(graph.nodes)
+  .enter().append("circle")
+    .attr("r", function(d) { return radius_scale(d.n_members); })
+    .attr("fill", function(d) { return ord_color(d.int_id); })
+    .call(d3.drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended));
+
+node.append("title")
+    .text(function(d) { return d.id; });
+
+simulation
+    .nodes(graph.nodes)
+    .on("tick", ticked);
+
+simulation.force("link")
+    .links(graph.links);
+
+
+var select = output.append("select")
+                     .on("change", menuchanged);
+
+select.selectAll("option")
+      .data(graph.categories_and_scales)
+      .enter()
+        .append("option")
+        .attr("value", function(d) {return d.name; })
+        .attr("type", function(d) {return d.type; })
+        .text(function (d) { return d.name; });
+
+function ticked() {
+  link
+      .attr("x1", function(d) { return d.source.x; })
+      .attr("y1", function(d) { return d.source.y; })
+      .attr("x2", function(d) { return d.target.x; })
+      .attr("y2", function(d) { return d.target.y; });
+
+  node
+      .attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; });
+}
+
+function dragstarted(d) {
+  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+  d.fx = d.x;
+  d.fy = d.y;
+}
+
+function dragged(d) {
+  d.fx = d3.event.x;
+  d.fy = d3.event.y;
+}
+
+function dragended(d) {
+  if (!d3.event.active) simulation.alphaTarget(0);
+  d.fx = null;
+  d.fy = null;
+}
+
+function menuchanged() {
+  // get the index of the selected element
+  var selectedIndex = d3.event.target.selectedIndex;
+  var selectedDOMElement = d3.event.target.children[selectedIndex];
+  var selection = d3.select(selectedDOMElement);
+  var v_name = selection.text()
+  var v_type = selection.attr("type")
+  var min_var = d3.min(graph.nodes, function(d) { return d[v_name]; });
+  var max_var = d3.max(graph.nodes, function(d) { return d[v_name]; });
+  node.style("fill", function(d) {
+    if (v_type == "category") {
+      return ord_color(d[v_name]);
+    }
+    seq_color.domain([min_var,max_var]);
+    return seq_color(d[v_name]);
+  });
+}
+});
+
+</script></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2016, Pablo de Castro.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/examples/chemdiab_example.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

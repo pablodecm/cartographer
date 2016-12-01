@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cartographer.coverers &#8212; cartographer 0.1.1dev0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.1dev0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/require.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="cartographer 0.1.1dev0 documentation" href="index.html" />
+    <link rel="up" title="Modules" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">cartographer</a></h1>
+
+
+
+<p class="blurb">Flexible and extensible Mapper algorithm implementation</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=pablodecm&repo=cartographer&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Introduction</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#what-is-cartographer">What is cartographer?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#references">References</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#contents">Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about_mapper.html">Theoretical miminum</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mapper.html">Mapper</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Coverers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html">Visualization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">More Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Modules</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-cartographer.coverers">
+<span id="cartographer-coverers"></span><h1><a class="reference internal" href="#module-cartographer.coverers" title="cartographer.coverers"><code class="xref py py-mod docutils literal"><span class="pre">cartographer.coverers</span></code></a><a class="headerlink" href="#module-cartographer.coverers" title="Permalink to this headline">¶</a></h1>
+<p>Coverers of the filtrated space</p>
+<dl class="class">
+<dt id="cartographer.coverers.HyperRectangleCoverer">
+<em class="property">class </em><code class="descclassname">cartographer.coverers.</code><code class="descname">HyperRectangleCoverer</code><span class="sig-paren">(</span><em>intervals=10</em>, <em>overlap=0.5</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cartographer/coverers.html#HyperRectangleCoverer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartographer.coverers.HyperRectangleCoverer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Covers the space using overlapping hyperectangles</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>intervals: integer or list of integers</strong></p>
+<blockquote>
+<div><p>number of intervals in each filtered space dimension, if an integer
+is specified the same number is used in all dimensions.</p>
+</div></blockquote>
+<p><strong>overlap: float or list of floats</strong></p>
+<blockquote class="last">
+<div><p>fraction of overlap between hyperectangles in each space dimension,
+if a single float is specified the same overlap is used in all
+dimensions.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#cartographer.coverers.HyperRectangleCoverer.fit" title="cartographer.coverers.HyperRectangleCoverer.fit"><code class="xref py py-obj docutils literal"><span class="pre">fit</span></code></a>(X[,&nbsp;y])</td>
+<td>Creates the space covering for the input data</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">fit_transform</span></code>(X[,&nbsp;y])</td>
+<td>Fit to data, then transform it.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_params</span></code>([deep])</td>
+<td>Get parameters for this estimator.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#cartographer.coverers.HyperRectangleCoverer.overlap_matrix" title="cartographer.coverers.HyperRectangleCoverer.overlap_matrix"><code class="xref py py-obj docutils literal"><span class="pre">overlap_matrix</span></code></a>()</td>
+<td>Returns a boolean array with the overlaps between space partitions</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">set_params</span></code>(\*\*params)</td>
+<td>Set the parameters of this estimator.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#cartographer.coverers.HyperRectangleCoverer.transform" title="cartographer.coverers.HyperRectangleCoverer.transform"><code class="xref py py-obj docutils literal"><span class="pre">transform</span></code></a>(X[,&nbsp;y])</td>
+<td>Returns boolean array of space partition membership</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="cartographer.coverers.HyperRectangleCoverer.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cartographer/coverers.html#HyperRectangleCoverer.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartographer.coverers.HyperRectangleCoverer.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the space covering for the input data</p>
+<p>It creates a hyperectangle covering of the multidimensional space of X.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>X: array-like, shape=(n_samples, n_features)</strong></p>
+<blockquote class="last">
+<div><p>Data which will be covered.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartographer.coverers.HyperRectangleCoverer.overlap_matrix">
+<code class="descname">overlap_matrix</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cartographer/coverers.html#HyperRectangleCoverer.overlap_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartographer.coverers.HyperRectangleCoverer.overlap_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a boolean array with the overlaps between space partitions</p>
+<p>Returns a (n_partitions, n_partitions) boolean array whose elements
+are true when there is overlap between the i and j partitions, only
+upper triangle is filled (rest is False).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">overlap_matrix: boolean array, shape=(n_partitions, n_partitions)</p>
+<blockquote class="last">
+<div><p>Boolean matrix of overlaping between partitions, only the upper
+triangle is filled and the rest is False.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartographer.coverers.HyperRectangleCoverer.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cartographer/coverers.html#HyperRectangleCoverer.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartographer.coverers.HyperRectangleCoverer.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns boolean array of space partition membership</p>
+<p>Returns a (n_samples, n_partitions) boolean array whose elements
+are true when the sample (row) is a member of each space partition
+(column). This will be used to filter in the clustering space.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>X: array-like, shape=(n_samples, n_features)</strong></p>
+<blockquote>
+<div><p>Data which will be partition in hyperectangles.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">m_matrix: boolean array, shape=(n_samples, n_partitions)</p>
+<blockquote class="last">
+<div><p>Boolean matrix of sample membership to each partition</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2016, Pablo de Castro.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/coverers.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

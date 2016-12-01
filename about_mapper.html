@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Theoretical miminum &#8212; cartographer 0.1.1dev0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.1dev0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/require.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="cartographer 0.1.1dev0 documentation" href="index.html" />
+    <link rel="next" title="Modules" href="modules.html" />
+    <link rel="prev" title="Quickstart" href="quickstart.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">cartographer</a></h1>
+
+
+
+<p class="blurb">Flexible and extensible Mapper algorithm implementation</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=pablodecm&repo=cartographer&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Introduction</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#what-is-cartographer">What is cartographer?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#references">References</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#contents">Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Theoretical miminum</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#topological-data-analysis">Topological data analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mapper-algorithm">Mapper algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">More Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="quickstart.html" title="previous chapter">Quickstart</a></li>
+      <li>Next: <a href="modules.html" title="next chapter">Modules</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="theoretical-miminum">
+<h1>Theoretical miminum<a class="headerlink" href="#theoretical-miminum" title="Permalink to this headline">¶</a></h1>
+<p>The Mapper algorithm  <a class="footnote-reference" href="#mapper-first" id="id1">[1]</a> is a visualization and data exploration
+technique to study the shape of high-dimensional data. This analysis method is
+generally classified as a topological data analysis (TDA) technique. Topology is
+the branch of mathematics which formally studies the qualitative geometric
+information of space by considering the characteristics that are preserved
+under continuous deformations.
+The mathematical properties of this discipline, such as
+functoriality, make of TDA a robust framework for studying high-dimensional data
+even in the presence of weak metrics or significant statistical noise.</p>
+<p>In addition to the original paper <a class="footnote-reference" href="#mapper-first" id="id2">[1]</a> where the technique
+was presented, I recommend checking <em>Topology and data</em>
+<a class="footnote-reference" href="#topology-and-data" id="id3">[3]</a> by Gunnar Carlsson and also some of the white papers
+and videos provided at <a class="reference external" href="https://www.ayasdi.com/">Ayasdi</a>, which is the company created by the inventors of
+the Mapper algorithm for its enterprise exploitation.
+In the following subsections, the basic theoretical concepts underlying TDA will be
+reviewed together with a formal description of what Mapper is and why
+it can be a useful tool for exploring the shape of data:</p>
+<div class="section" id="topological-data-analysis">
+<h2>Topological data analysis<a class="headerlink" href="#topological-data-analysis" title="Permalink to this headline">¶</a></h2>
+<p>Under a very broad view, topological data analysis (TDA) can
+be defined as a collection of data analysis techniques
+that try to find structure in data <a class="footnote-reference" href="#tda-wasserman" id="id4">[2]</a>. Most of these
+methods are based on quantifying the ideas of shape and connectivity
+on the observed data.
+It is worth to point out that while even clustering or manifold learning
+can be considered as a members of the TDA family of tools, some authors
+restrict this category to only the approaches that make extensive use of
+persistent homology (e.g. Betti numbers, barcodes and persistent
+diagrams).</p>
+<p>The main idea behind persistent homology is that the topological
+features that appears within a wide range of resolutions are those more
+likely to represent genuine features of the underlying space. This
+is a very powerful notion which is extensible to many other statistical
+tools. For example, it is a really useful concept for clustering,
+kernel density estimation or applying the Mapper algorithm itself to data
+as a function of parameters, as it will be shown in the next section
+and provided practical examples.</p>
+</div>
+<div class="section" id="mapper-algorithm">
+<h2>Mapper algorithm<a class="headerlink" href="#mapper-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>The purpose of the Mapper algorithm is to obtain compact representations
+which can be used to visualize and explore the shape and connectivity
+properties that might be present in complex high-dimensional data.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<table class="docutils footnote" frame="void" id="mapper-first" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Singh, Gurjeet, Facundo Mémoli, and Gunnar E. Carlsson.
+&#8220;Topological Methods for the Analysis of High Dimensional Data Sets and
+3D Object Recognition.&#8221; SPBG. 2007.
+<a class="reference external" href="http://dx.doi.org/10.2312/SPBG/SPBG07/091-100">doi:10.2312/SPBG/SPBG07/091-100</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="tda-wasserman" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[2]</a></td><td>Larry Wasserman.
+&#8220;Topological Data Analysis&#8221;. Submitted to Annual Reviews in Statistics. 2016.
+<a class="reference external" href="https://arxiv.org/abs/1609.08227">eprint arXiv:1609.08227</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="topology-and-data" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Gunnar E. Carlsson.
+&#8220;Topology and Data&#8221; Bull. Amer. Math. Soc. 46 (2009), 255-308.
+<a class="reference external" href="http://dx.doi.org/10.1090/S0273-0979-09-01249-X">doi:10.1090/S0273-0979-09-01249-X</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2016, Pablo de Castro.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/about_mapper.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
