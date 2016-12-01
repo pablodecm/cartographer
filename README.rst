@@ -29,7 +29,7 @@ Features
 - Built-in but customizable d3js graph visualizations to be used interactively
   from Jupyter Notebook.
 - Reasonably efficient implementation, in the process of being 
-  parallelized and to use sparse when possible.
+  parallelized and to use sparse data structructures when possible.
 
 Installation
 ============
