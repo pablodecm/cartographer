@@ -2,7 +2,7 @@ TDA concepts
 ------------
 
 Under a very broad view, topological data analysis (TDA) can
-be define as a collection of data analysis techniques
+be defined as a collection of data analysis techniques
 that try to find structure in data [#tda_wasserman]_. Most of these
 methods are based on quantifying the ideas of shape and connectivity
 on the observed data.
@@ -16,9 +16,10 @@ The main idea behind persistent homology is that the topological
 features that appears within a wide range of resolutions are those more
 likely to represent genuine features of the underlying space. This
 is a very powerful notion which is extensible to many other statistical
-tool or when clustering or applying the Mapper algorithm itself to data
+tools. For example, it is a really useful concept for clustering,
+kernel density estimation or applying the Mapper algorithm itself to data
 as a function of parameters, as it will be shown in the next section
-and the provided practical examples.
+and provided practical examples.
 
 References
 ==========
